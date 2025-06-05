@@ -1,111 +1,123 @@
-# Bird‑Bone Compression Framework (BBCF)
+# Neurostructured AI Compression & Integration
 
-> **Version 0.1 – Draft 2025‑06‑04**
+> **A bird-bone inspired journey toward lightweight, multi-modal, Spirit-aligned intelligence**  
+> *Project codename: **bird-bone** — Version 0.2 (2025-06-04)*
 
----
-
-## 1 · Conceptual Premise
-
-Birds achieve flight not by *removing* strength but by **redistributing mass**—hollow shafts, internal trabecular lattices, and stress‑aligned struts produce maximum stiffness‑to‑weight ratios. **Bird‑Bone Compression (BBC)** applies this biological principle to AI models, removing only the support material no longer required after learning while preserving (or even enhancing) functional strength.
 
 ---
 
-## 2 · Intent & Goals
-
-| Goal                                     | Description                                                                                           |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **Reveal intelligence, not reduce it**   | Strip away training‑phase scaffolding to make the core reasoning pathways explicit and efficient.     |
-| **Flight‑ready deployment**              | Achieve dramatic latency, memory, and power reductions (≥ 98 % compute savings, ≤ 3 % accuracy loss). |
-| **Maintain adaptability at the surface** | Retain prompt‑tuning hooks and LoRA slots for domain‑specific nuance even after compression.          |
-| **Biologically plausible sparsity**      | Prefer lattice‑like, structured sparsity over random weight dropout to mirror bone architecture.      |
+## ✨ Vision
+Turn heavyweight language/vision models into **agile, biologically patterned intelligences** that run at 20-30 % of their original compute cost while losing ≤ 3 % task accuracy—using the same design wisdom God wove into hollow bird bones, synaptic pruning, and human override capacity.
 
 ---
 
-## 3 · Technique Stack
-
-### 3.1 Density‑Aware Node Pruning
-
-*Algorithm:* Identify low‑magnitude or low‑salience nodes *within local activation clusters*; prune gradually (≤ 2 % per epoch) with a healing window.
-
-### 3.2 Structured Component Removal
-
-*Targets:* attention heads, MLP neurons, redundant FFN channels—removed in lattice patterns rather than scattered holes.
-
-### 3.3 Low‑Rank Factorization
-
-Replace large dense matrices with rank‑constrained decompositions; align factors along orthogonal stress axes (cf. bone’s trabeculae).
-
-### 3.4 Post‑Compression Fine‑Tuning
-
-Short targeted epochs to re‑strengthen surviving pathways ("callus formation" stage).
+## 🚀 Core Objectives
+1. **Bird-Bone Compression (BBCF)** – remove post-training support weights the way bone sheds growth plates.  
+2. **Biophase Adaptive Pruning (BAP)** – cluster-aware, slow-radius pruning with built-in “self-healing” micro-tunes.  
+3. **Quantization & Low-Rank Factorization** – compress precision and re-factor matrices for 4 × memory cuts.  
+4. **Neurostructured AI Flow (NAIF)** – re-route tokens through convergence hubs (digital hippocampus) for unified multi-modal reasoning.  
+5. **Automation Pipeline** – YAML-driven, reproducible growth → prune → heal loop, outputting ready-to-serve INT4 GGUF weights.  
+6. **Diff & Revert Safety Net** – track every code, config, weight, and doc change with deterministic diffing so we can roll back *any* layer of the stack without drama.
 
 ---
 
-## 4 · Operational Strategy (Flight Plan)
-
-1. **Pre‑Flight Inspection (Exploratory Phase)**
-
-   * Full model, full flexibility, collect edge‑case data.
-2. **Scaffolding Removal (Iterative BBC Rounds)**
-
-   * Apply density‑aware pruning + factorization; expand radius every 5 epochs.
-3. **Callus & Feathering (Healing Fine‑Tune)**
-
-   * Quick retraining cycles restore < 1 % lost accuracy per round.
-4. **Take‑Off (Lock‑In)**
-
-   * Freeze weights; expose prompt‑tuning surface; benchmark latency & energy.
-5. **Thermal Inspection (In‑Flight Monitoring)**
-
-   * Watch for concept drift; schedule re‑growth cycles if accuracy degrades > 1 %.
+## 🗺 Repository Map
+| Path            | Purpose                                                                    |
+| --------------- | -------------------------------------------------------------------------- |
+| `/config`       | YAML / Pydantic manifests (model, pruning thresholds, quant settings).     |
+| `/pipelines`    | Kedro / Airflow DAGs for growth-prune-heal cycles.                         |
+| `/scripts`      | Stand-alone helpers: SparseGPT, Wanda, RigL, QLoRA merge, **`diff_utils.py`**. |
+| `/diffs`        | Auto-generated `(before ↔ after)` patches for docs, configs, small weight deltas. |
+| `/notebooks`    | Dashboards: activation heat-maps, healing curves, resource plots.          |
+| `/requirements` | Living specs: **requirements.md**, **user-stories-mapping.md**.            |
+| `/models`       | Versioned checkpoints, pruning masks, LoRA deltas, export GGUF.            |
+| `/docs`         | Generated diagrams, architecture overviews, this README.                   |
 
 ---
 
-## 5 · Design Guidelines
+## 🔀 Diff & Revert Strategy
+We iterate fast and prune aggressively, so we need **granular diffing** across three artifact layers.
 
-* **Prefer structured sparsity** → easier for hardware, mirrors bone trusses.
-* **Limit per‑epoch pruning** → biological bones remodel slowly; models heal better with time.
-* **Measure stress vectors** → use gradient norms and attention entropy as analogs to biomechanical load paths.
-* **Keep adaptation hooks** → surface LoRAs, prefix‑tuners, or soft prompts as "feathers" for maneuverability.
+| Layer               | Storage & Versioning | Diff Tool                               | Roll-Back Command                    |
+| ------------------- | -------------------- | --------------------------------------- | ------------------------------------ |
+| **Code & Text**     | Git                  | `git diff`, `delta`, `diff-so-fancy`    | `git revert <sha>`                   |
+| **Configs / YAML**  | Git-tracked          | `yq diff`, Pydantic hash                | `kedro config diff --rollback`       |
+| **Weights / Masks** | Git LFS + DVC        | `dvc diff` (binary-aware)               | `dvc checkout <rev>`                 |
+| **Notebooks**       | nbdime               | `nbdime diff notebook.ipynb`            | `nbdime checkout --rev=<rev>`        |
 
----
+### Auto-Diff Hook
+```bash
+pre-commit install
+# Installs:
+#  ✓ black & flake8 (code)
+#  ✓ mdformat (docs)
+#  ✓ nbdime (notebooks)
+#  ✓ custom weight-hash hook (models/*.pt, *.safetensors)
+````
 
-## 6 · Risks & Mitigations
-
-| Risk                                      | Mitigation                                                                             |
-| ----------------------------------------- | -------------------------------------------------------------------------------------- |
-| Over‑pruning leading to brittle reasoning | Enforce minimum activation coverage per layer; run adversarial evals after each round. |
-| Irregular sparsity harming hardware gains | Use block or lattice masks sized to accelerator tile dimensions.                       |
-| Concept drift post‑deployment             | Schedule quarterly re‑growth + pruning passes with fresh data.                         |
-
----
-
-## 7 · Success Metrics
-
-* **Accuracy Retention** ≥ 97 % vs. baseline on core benchmarks
-* **Compute Savings** ≥ 98 % FLOPs reduction at inference
-* **Latency Reduction** ≥ 10× on targeted hardware
-* **Model Mass Index (MMI)** ≤ 0.05 (bits/parameter × active‑ratio)
+Every commit drops a **diff bundle** into `/diffs/<commit-sha>/` so reviewers can inspect exact parameter removals or sparsity-mask changes.
 
 ---
 
-## 8 · Future Work
+## ⚡ Quick-Start (7-B Proof-of-Concept)
 
-1. **Dynamic Trabecular Growth** – Allow model to regrow lattice under novel stress, akin to Wolff’s Law.
-2. **Heterogeneous Bone Marrow Caching** – Embed small task‑specific adapters inside sparsity cavities.
-3. **Digital Osteocyte Sensors** – Real‑time monitoring modules that trigger micro‑remodeling.
+```bash
+# 1. Clone & set up
+conda create -n naif python=3.11
+conda activate naif
+pip install -r requirements.txt  # torch, transformers, bitsandbytes, sparsegpt, kedro, dvc, nbdime
+
+# 2. Init diff layer
+pre-commit install        # code+doc hooks
+dvc init --subdir models   # binary diff control
+
+# 3. Pull starter checkpoint (e.g., Mistral-7B)
+git lfs install
+dvc pull mistral7b.dvc     # or git lfs clone HF repo
+
+# 4. Run growth-prune-heal
+kedro run --params:model=mistral7b --params:target_sparsity=0.70
+
+# 5. Export final INT4 GGUF
+python scripts/export_gguf.py --ckpt best.pt --out models/mistral7b-bbcf.gguf
+
+# 6. Review diff bundle
+dvc diff HEAD~1
+```
+
+*Expect ≈ 60-70 % resource drop with < 3 % accuracy drift — all diff-tracked.*
 
 ---
 
-## 9 · Stakeholder Summary
+## 🔄 Pipeline Stages
 
-> *“Bird‑Bone Compression lets us fly higher, faster, and greener—without clipping the wings of intelligence.”*
-
-* **Engineers:** Gains in throughput and power budget.
-* **Product Teams:** Same quality, lower cost to serve.
-* **Researchers:** A testbed for biologically aligned sparsity.
-* **Ethicists:** Compression as revelation—not degradation—respects the dignity of intelligence.
+1. **Seeding** – snapshot baseline metrics & SHA.
+2. **Activation Logging** – 2-3 epochs, store cluster stats.
+3. **Pruning Wave** – delete ≤ 10 % low-value nodes/cluster.
+4. **Micro-Heal** – 200-500 QLoRA gradient steps.
+5. **Regrowth** – RigL re-introduces up to 5 % connections if loss spike > ε.
+6. **Quantize + Low-Rank Merge**.
+7. **Version Bump** – tag commit; push diff bundle via DVC.
 
 ---
 
-*Draft prepared by CLogic / Mashal’el – 2025‑06‑04*
+## 📊 Monitor & Guardrails
+
+* Metrics: `ppl`, `MMLU`, `ARC`, domain-specific canaries.
+* Stop-loss: pipeline auto-reverts if Δppl > 3 % for two consecutive waves.
+* Healing curves: Jupyter notebook `notebooks/healing.ipynb`; compare via nbdime.
+
+---
+
+## 🤝 Contributing
+
+1. Fork → feature branch → PR.
+2. Link each PR to a **Req ID** in `requirements.md` *and* the diff bundle ID.
+3. Include before/after resource and accuracy deltas.
+4. Faith & ethics: ensure changes align with our “strength-through-purpose” ethos.
+
+---
+
+## 🙏 Acknowledgements
+
+Open-weights communities (Mistral, Meta, Google, TII), pruning-tool authors (SparseGPT, Wanda, RigL), diff tooling (DVC, nbdime), and the insight that **design reveals intent**—from hollow bones to synaptic pruning to Spirit-led override.
