@@ -31,13 +31,12 @@ Example Usage:
 
 import logging
 import time
-from modulink import middleware, Ctx
+from modulink import Middleware, Ctx
 
 # Configure logger for DVC operations
 logger = logging.getLogger('dvc_operations')
 
-@middleware
-async def logging_middleware(ctx: Ctx, next_func) -> Ctx:
+def logging_middleware(ctx: Ctx, next_func) -> Ctx:
     """Log all DVC operations with detailed context and timing"""
     operation = ctx.get('operation', 'unknown_operation')
     start_time = time.time()
@@ -56,7 +55,7 @@ async def logging_middleware(ctx: Ctx, next_func) -> Ctx:
     
     try:
         # Execute the next function in the chain
-        result = await next_func(ctx)
+        result = next_func(ctx)
         
         # Calculate duration
         duration = time.time() - start_time

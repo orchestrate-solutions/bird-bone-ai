@@ -58,12 +58,6 @@ from .setup_dvcignore import setup_dvcignore_link
 from .create_sample_pipeline import create_sample_pipeline_link
 from .test_dvc_operations import test_dvc_operations_link
 
-# Middleware exports
-from .middleware import (
-    logging_middleware,
-    error_handler_middleware
-)
-
 __all__ = [
     # Link functions
     'validate_prerequisites_link',
@@ -71,11 +65,7 @@ __all__ = [
     'configure_dvc_cache_link',
     'setup_dvcignore_link',
     'create_sample_pipeline_link',
-    'test_dvc_operations_link',
-    
-    # Middleware
-    'logging_middleware',
-    'error_handler_middleware'
+    'test_dvc_operations_link'
 ]
 
 # Package metadata

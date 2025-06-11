@@ -34,13 +34,12 @@ Example Usage:
 
 import subprocess
 import json
-from modulink import middleware, Ctx
+from modulink import Middleware, Ctx
 
-@middleware
-async def error_handler_middleware(ctx: Ctx, next_func) -> Ctx:
+def error_handler_middleware(ctx: Ctx, next_func) -> Ctx:
     """Handle DVC-specific errors and emit them as context"""
     try:
-        return await next_func(ctx)
+        return next_func(ctx)
     
     except subprocess.CalledProcessError as e:
         """Handle DVC command execution errors"""

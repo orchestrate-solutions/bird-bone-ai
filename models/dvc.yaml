@@ -1,0 +1,30 @@
+plots:
+- models/validation_metrics.json:
+    x: epoch
+    y: accuracy
+- models/compression_metrics.json:
+    x: compression_ratio
+    y: performance_retained
+stages:
+  compress_model:
+    cmd: python scripts/compress_model.py models/sample_model.pt models/compressed_model.pt
+    deps:
+    - scripts/compress_model.py
+    - models/sample_model.pt
+    metrics:
+    - models/compression_metrics.json
+    outs:
+    - models/compressed_model.pt
+  prepare_sample_model:
+    cmd: python scripts/create_sample_model.py
+    deps:
+    - scripts/create_sample_model.py
+    outs:
+    - models/sample_model.pt
+  validate_model:
+    cmd: python scripts/validate_model.py models/sample_model.pt
+    deps:
+    - scripts/validate_model.py
+    - models/sample_model.pt
+    metrics:
+    - models/validation_metrics.json

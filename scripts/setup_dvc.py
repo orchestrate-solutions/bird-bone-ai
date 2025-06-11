@@ -64,7 +64,10 @@ async def run_dvc_initialization() -> bool:
         if result.get('errors'):
             logger.error("❌ DVC initialization completed with errors:")
             for error in result['errors']:
-                logger.error(f"  - {error['type']}: {error['details']}")
+                if isinstance(error, dict):
+                    logger.error(f"  - {error.get('type', 'Error')}: {error.get('details', str(error))}")
+                else:
+                    logger.error(f"  - {error}")
             return False
         else:
             logger.info("✅ DVC initialization completed successfully!")

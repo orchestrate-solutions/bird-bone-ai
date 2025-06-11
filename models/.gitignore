@@ -1,0 +1,19 @@
+# DVC tracked outputs - these should not be committed to Git
+/sample_model.pt
+/compressed_model.pt
+/validation_metrics.json
+/compression_metrics.json
+
+# DVC cache files
+/.dvc/cache/
+
+# Temporary model files
+*.tmp.pt
+*.partial.pt
+
+# Model checkpoints (example - adjust as needed)
+/checkpoints/
+
+# Experiment artifacts
+/experiments/
+/logs/

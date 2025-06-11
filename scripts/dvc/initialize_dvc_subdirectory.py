@@ -73,14 +73,36 @@ async def initialize_dvc_subdirectory_link(ctx: Ctx) -> Ctx:
     if not models_dir.exists():
         models_dir.mkdir(parents=True, exist_ok=True)
     
-    # Initialize DVC in subdirectory
+    # Check if DVC is already initialized
+    dvc_dir = models_dir / '.dvc'
+    if dvc_dir.exists():
+        dvc_config_path = dvc_dir / 'config'
+        return {
+            **ctx,
+            'operation': 'initialize_dvc_subdirectory',
+            'dvc_initialized': True,
+            'dvc_dir': str(dvc_dir),
+            'dvc_config_path': str(dvc_config_path),
+            'dvc_init_output': 'DVC already initialized',
+            'models_exists': True
+        }
+    
+    # Initialize DVC in subdirectory (must run from within the subdirectory)
     result = subprocess.run(
-        ['dvc', 'init', '--subdir', 'models'],
+        ['dvc', 'init', '--subdir'],
         capture_output=True,
         text=True,
-        check=True,
-        cwd=project_root
+        cwd=str(models_dir)
     )
+    
+    if result.returncode != 0:
+        return {
+            **ctx,
+            'operation': 'initialize_dvc_subdirectory',
+            'dvc_initialized': False,
+            'error': f'DVC init failed: {result.stderr}',
+            'errors': ctx.get('errors', []) + [f'DVC init failed: {result.stderr}']
+        }
     
     dvc_dir = models_dir / '.dvc'
     dvc_config_path = dvc_dir / 'config'
