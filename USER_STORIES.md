@@ -102,13 +102,13 @@ Each user story follows the format:
 - [ ] Configurable importance thresholds
 - [ ] Export functionality for importance scores
 
-### US-2-2: Growth Plate Shedding Algorithm
-**As a** ML engineer, **I want** a biologically-inspired algorithm that mimics bone growth plate shedding, **so that** I can remove support weights in a natural, safe manner.
+### US-2-2: Density Loss and Strengthening Algorithm
+**As a** ML engineer, **I want** a biologically-inspired algorithm that mimics bone density loss followed by strengthening cycles, **so that** I can remove unnecessary neural density in a natural, safe manner while maintaining structural integrity.
 
 **Priority:** High | **Story Points:** 8
 
 **Acceptance Criteria:**
-- [ ] Growth plate identification algorithm implemented
+- [ ] Density loss region identification algorithm implemented
 - [ ] Safe shedding mechanism that preserves critical pathways
 - [ ] Configurable shedding rates and patterns
 - [ ] Integration with weight importance scores

@@ -23,16 +23,16 @@ Turn heavyweight language/vision models into **agile, biologically patterned int
 ---
 
 ## 🗺 Repository Map
-| Path            | Purpose                                                                    |
-| --------------- | -------------------------------------------------------------------------- |
-| `/config`       | YAML / Pydantic manifests (model, pruning thresholds, quant settings).     |
-| `/pipelines`    | Kedro / Airflow DAGs for growth-prune-heal cycles.                         |
-| `/scripts`      | Stand-alone helpers: SparseGPT, Wanda, RigL, QLoRA merge, **`diff_utils.py`**. |
-| `/diffs`        | Auto-generated `(before ↔ after)` patches for docs, configs, small weight deltas. |
-| `/notebooks`    | Dashboards: activation heat-maps, healing curves, resource plots.          |
-| `/requirements` | Living specs: **requirements.md**, **user-stories-mapping.md**.            |
-| `/models`       | Versioned checkpoints, pruning masks, LoRA deltas, export GGUF.            |
-| `/docs`         | Generated diagrams, architecture overviews, this README.                   |
+```
+/config        # YAML/Pydantic manifests for configuration
+/pipelines     # Kedro/Airflow DAGs and pipeline definitions
+/scripts       # Standalone helper scripts and utilities
+/diffs         # Auto-generated patch and diff files
+/notebooks     # Jupyter dashboards and exploratory notebooks
+/requirements  # Living requirements and environment specs
+/models        # Versioned model checkpoints and weights
+/docs          # Generated diagrams, documentation, and API docs
+```
 
 ---
 
@@ -62,28 +62,57 @@ Every commit drops a **diff bundle** into `/diffs/<commit-sha>/` so reviewers ca
 
 ## ⚡ Quick-Start (7-B Proof-of-Concept)
 
+### Prerequisites
+- **Python 3.11+** (Required for optimal compatibility)
+- **Conda/Miniconda** ([Download here](https://docs.conda.io/en/latest/miniconda.html))
+- **CUDA 12.4+** for H100/A100 GPU optimization (recommended)
+- **Git LFS** for large file handling
+
+### Automated Setup (Recommended)
 ```bash
-# 1. Clone & set up
-conda create -n naif python=3.11
-conda activate naif
-pip install -r requirements.txt  # torch, transformers, bitsandbytes, sparsegpt, kedro, dvc, nbdime
+# 1. Clone repository
+git clone https://github.com/your-org/bird-bone-ai.git
+cd bird-bone-ai
 
-# 2. Init diff layer
-pre-commit install        # code+doc hooks
-dvc init --subdir models   # binary diff control
+# 2. Run automated environment setup
+./scripts/setup_environment.sh
 
-# 3. Pull starter checkpoint (e.g., Mistral-7B)
+# 3. Activate environment
+conda activate bird-bone-ai
+
+# 4. Validate installation
+python scripts/validate_environment.py --verbose
+```
+
+### Manual Setup (Alternative)
+```bash
+# 1. Create conda environment
+conda env create -f environment.yml
+conda activate bird-bone-ai
+
+# 2. Install additional requirements
+pip install -r requirements.txt
+
+# 3. Setup development tools
+pre-commit install
+dvc init --subdir models
 git lfs install
-dvc pull mistral7b.dvc     # or git lfs clone HF repo
 
-# 4. Run growth-prune-heal
-kedro run --params:model=mistral7b --params:target_sparsity=0.70
+# 4. Validate setup
+python scripts/validate_environment.py
+```
 
-# 5. Export final INT4 GGUF
-python scripts/export_gguf.py --ckpt best.pt --out models/mistral7b-bbcf.gguf
-
-# 6. Review diff bundle
-dvc diff HEAD~1
+### Quick Test
+```bash
+# Test core functionality
+python -c "
+import torch
+import transformers
+print(f'✓ PyTorch {torch.__version__}')
+print(f'✓ CUDA Available: {torch.cuda.is_available()}')
+print(f'✓ Transformers {transformers.__version__}')
+print('🎉 Ready for bird-bone AI development!')
+"
 ```
 
 *Expect ≈ 60-70 % resource drop with < 3 % accuracy drift — all diff-tracked.*

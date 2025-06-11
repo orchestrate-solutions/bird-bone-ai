@@ -28,16 +28,16 @@ Each issue follows the format:
 Establish the foundational directory structure for the bird-bone AI project according to the architecture specified in the README. This structure will organize code, configurations, pipelines, and artifacts in a logical, scalable manner.
 
 **Acceptance Criteria:**
-- [ ] Create `/config` directory with README explaining YAML/Pydantic manifests
-- [ ] Create `/pipelines` directory with README explaining Kedro/Airflow DAGs
-- [ ] Create `/scripts` directory with README explaining standalone helpers
-- [ ] Create `/diffs` directory with README explaining auto-generated patches
-- [ ] Create `/notebooks` directory with README explaining dashboards
-- [ ] Create `/requirements` directory with README explaining living specs
-- [ ] Create `/models` directory with README explaining versioned checkpoints
-- [ ] Create `/docs` directory with README explaining generated diagrams
-- [ ] Add `.gitkeep` files to preserve empty directories in git
-- [ ] Update main README.md repository map section if needed
+- [x] Create `/config` directory with README explaining YAML/Pydantic manifests
+- [x] Create `/pipelines` directory with README explaining Kedro/Airflow DAGs
+- [x] Create `/scripts` directory with README explaining standalone helpers
+- [x] Create `/diffs` directory with README explaining auto-generated patches
+- [x] Create `/notebooks` directory with README explaining dashboards
+- [x] Create `/requirements` directory with README explaining living specs
+- [x] Create `/models` directory with README explaining versioned checkpoints
+- [x] Create `/docs` directory with README explaining generated diagrams
+- [x] Add `.gitkeep` files to preserve empty directories in git
+- [x] Update main README.md repository map section if needed
 
 **Implementation Notes:**
 - Follow the exact structure outlined in README.md Repository Map
@@ -582,12 +582,6 @@ Configure pre-commit hooks for markdown formatting and documentation quality to 
 **Description:**
 Develop a custom pre-commit hook that generates and tracks hash signatures for model weight files, enabling detection of unauthorized or accidental weight modifications.
 
-**Requirements:**
-- Create Python script for weight file hashing
-- Integrate with pre-commit framework
-- Track hash changes in version control
-- Provide clear change notifications
-
 **Acceptance Criteria:**
 - [ ] Python script `scripts/weight_hash_hook.py` created
 - [ ] Supports common weight formats (*.pt, *.safetensors, *.gguf)
@@ -788,39 +782,39 @@ Build interactive visualization tools to help understand weight importance distr
 
 ---
 
-### Issue #11: Develop Growth Plate Identification Algorithm
-**Related to:** US-2-2: Growth Plate Shedding Algorithm  
+### Issue #11: Develop Density Loss Region Identification Algorithm
+**Related to:** US-2-2: Density Loss and Strengthening Algorithm  
 **Labels:** `priority/high`, `epic/bbcf`, `type/algorithm`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
 
 **Description:**
-Implement the core biologically-inspired algorithm that identifies "growth plates" - support weights that can be safely removed similar to how bone growth plates are shed during maturation.
+Implement the core biologically-inspired algorithm that identifies low-density neural regions that can be safely thinned, similar to how bones shed unnecessary density while maintaining structural integrity through strategic strengthening.
 
 **Acceptance Criteria:**
-- [ ] Research and implement growth plate identification based on weight importance
+- [ ] Research and implement density loss region identification based on weight importance
 - [ ] Create algorithm that identifies redundant weight patterns
 - [ ] Implement structural dependency analysis to avoid breaking critical pathways
 - [ ] Add support for different neural network architectures (attention, FFN, embeddings)
-- [ ] Create growth plate marking and tracking system
+- [ ] Create density loss region marking and tracking system
 - [ ] Implement safety checks to preserve model connectivity
 - [ ] Add configurable aggressiveness parameters
-- [ ] Include growth plate visualization and reporting
+- [ ] Include density loss region visualization and reporting
 
 **Implementation Notes:**
-- Study biological growth plate shedding for algorithmic inspiration
+- Study biological bone density loss for algorithmic inspiration
 - Use graph theory concepts to understand neural network connectivity
-- Implement iterative refinement of growth plate identification
+- Implement iterative refinement of density loss region identification
 - Consider layer-specific and architecture-specific patterns
 
 ---
 
 ### Issue #12: Implement Safe Weight Shedding Mechanism
-**Related to:** US-2-2: Growth Plate Shedding Algorithm  
+**Related to:** US-2-2: Density Loss and Strengthening Algorithm  
 **Labels:** `priority/high`, `epic/bbcf`, `type/algorithm`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
 
 **Description:**
-Create the weight removal mechanism that safely sheds identified growth plates while preserving critical neural pathways and maintaining model functionality.
+Create the weight removal mechanism that safely sheds identified density loss regions while preserving critical neural pathways and maintaining model functionality.
 
 **Acceptance Criteria:**
 - [ ] Implement gradual weight removal with validation checkpoints
@@ -904,7 +898,7 @@ Create specific integration support for Mistral-7B model architecture, serving a
 - [ ] Implement Mistral-7B model loading and analysis
 - [ ] Add support for Mistral's attention mechanism compression
 - [ ] Implement feed-forward layer compression for Mistral architecture
-- [ ] Create Mistral-specific growth plate identification patterns
+- [ ] Create Mistral-specific density loss region identification patterns
 - [ ] Add embedding layer compression support
 - [ ] Implement architecture-aware safety checks
 - [ ] Create Mistral-7B compression benchmarks and validation

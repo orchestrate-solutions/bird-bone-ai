@@ -43,7 +43,7 @@ Implement the core Bird-Bone Compression Framework that removes post-training su
 
 ### Key Features
 - Post-training weight analysis and identification
-- Growth plate shedding algorithm implementation
+- Density loss region identification algorithm implementation
 - Weight importance scoring mechanisms
 - Safe weight removal with rollback capabilities
 - Integration with existing model architectures
