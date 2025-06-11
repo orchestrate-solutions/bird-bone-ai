@@ -24,10 +24,53 @@ import json
 from typing import Dict, List, Any
 
 # Test configuration - Aligned with Issue #2 Research Decisions
-TEST_MODEL_EXTENSIONS = ['.pt', '.safetensors', '.gguf', '.bin']
-TEST_DATA_EXTENSIONS = ['.npz', '.h5', '.hdf5']  # Removed .pkl per research decision
-TEST_ARCHIVE_EXTENSIONS = ['.tar.gz', '.zip']
+# Updated to reflect comprehensive LFS pattern coverage (synchronized with .gitattributes)
+
+# Core critical extensions that MUST be present (minimum requirements)
+CRITICAL_MODEL_EXTENSIONS = ['.pt', '.pth', '.safetensors', '.gguf', '.bin', '.onnx', '.pb']
+CRITICAL_DATA_EXTENSIONS = ['.npz', '.npy', '.h5', '.hdf5', '.parquet']  # Removed .pkl per research decision
+CRITICAL_ARCHIVE_EXTENSIONS = ['.tar.gz', '.tgz', '.zip', '.7z']
+
+# Legacy test constants for backward compatibility
+TEST_MODEL_EXTENSIONS = CRITICAL_MODEL_EXTENSIONS
+TEST_DATA_EXTENSIONS = CRITICAL_DATA_EXTENSIONS
+TEST_ARCHIVE_EXTENSIONS = CRITICAL_ARCHIVE_EXTENSIONS
+
 MINIMUM_STORAGE_REQUIREMENT = 1024 * 1024 * 100  # 100MB
+
+def extract_all_lfs_patterns_from_gitattributes() -> List[str]:
+    """Extract all LFS patterns from .gitattributes file dynamically"""
+    gitattributes_path = Path('.gitattributes')
+    if not gitattributes_path.exists():
+        return []
+    
+    content = gitattributes_path.read_text()
+    lfs_patterns = []
+    
+    for line in content.split('\n'):
+        line = line.strip()
+        # Skip comments and empty lines
+        if not line or line.startswith('#'):
+            continue
+        
+        # Check if line contains LFS filter configuration
+        if 'filter=lfs diff=lfs merge=lfs -text' in line:
+            lfs_patterns.append(line)
+    
+    return lfs_patterns
+
+def extract_extensions_from_patterns(patterns: List[str]) -> List[str]:
+    """Extract file extensions from LFS patterns"""
+    extensions = []
+    for pattern in patterns:
+        # Extract pattern part (before 'filter=lfs')
+        pattern_part = pattern.split()[0]
+        if pattern_part.startswith('*'):
+            # Extract extension (everything after the *)
+            ext = pattern_part[1:]
+            if ext and not ext.startswith('_'):  # Skip project-specific patterns like *_compressed.*
+                extensions.append(ext)
+    return list(set(extensions))  # Remove duplicates
 
 
 class TestGitLFSPrerequisites:
@@ -100,6 +143,62 @@ class TestGitAttributesConfiguration:
                 assert 'diff=lfs' in parts, f"Missing diff=lfs in: {line}"
                 assert 'merge=lfs' in parts, f"Missing merge=lfs in: {line}"
                 assert '-text' in parts, f"Missing -text in: {line}"
+    
+    def test_comprehensive_lfs_pattern_coverage(self):
+        """Test that all LFS patterns in .gitattributes are properly formatted and comprehensive"""
+        # Extract all patterns dynamically from .gitattributes
+        all_lfs_patterns = extract_all_lfs_patterns_from_gitattributes()
+        
+        # Should have a comprehensive set of patterns (45+ expected)
+        assert len(all_lfs_patterns) >= 40, f"Expected 40+ LFS patterns, found {len(all_lfs_patterns)}"
+        
+        # Extract extensions for analysis
+        all_extensions = extract_extensions_from_patterns(all_lfs_patterns)
+        
+        # Verify critical extensions are present
+        critical_extensions = ['.pt', '.safetensors', '.gguf', '.bin']
+        for ext in critical_extensions:
+            assert ext in all_extensions, f"Critical extension {ext} missing from LFS patterns"
+        
+        # Verify format of all patterns
+        for pattern in all_lfs_patterns:
+            parts = pattern.split()
+            assert len(parts) >= 4, f"Invalid LFS pattern format: {pattern}"
+            assert 'filter=lfs' in parts, f"Missing filter=lfs in: {pattern}"
+            assert 'diff=lfs' in parts, f"Missing diff=lfs in: {pattern}"
+            assert 'merge=lfs' in parts, f"Missing merge=lfs in: {pattern}"
+            assert '-text' in parts, f"Missing -text in: {pattern}"
+        
+        # Verify no pickle patterns (security decision from Issue #2)
+        pickle_patterns = [p for p in all_lfs_patterns if '.pkl' in p]
+        assert len(pickle_patterns) == 0, f"Found pickle patterns (security risk): {pickle_patterns}"
+        
+        if hasattr(self, '_verbose_output'):
+            print(f"\n📊 LFS Pattern Analysis:")
+            print(f"  Total patterns: {len(all_lfs_patterns)}")
+            print(f"  Unique extensions: {len(all_extensions)}")
+            print(f"  Sample patterns: {all_lfs_patterns[:3]}...")
+    
+    def test_bird_bone_ai_specific_patterns(self):
+        """Test Bird-Bone AI specific compression artifact patterns"""
+        gitattributes_content = Path('.gitattributes').read_text()
+        
+        # Check for project-specific patterns
+        project_patterns = [
+            '*_compressed.*',
+            '*_density_loss.*', 
+            '*_healing_checkpoint.*',
+            '*_bap_snapshot.*',
+            '*_pruning_mask.*',
+            '*_quantized.*',
+            '*_factorized.*',
+            '*_lora.*'
+        ]
+        
+        for pattern in project_patterns:
+            full_pattern = f"{pattern} filter=lfs diff=lfs merge=lfs -text"
+            assert full_pattern in gitattributes_content, \
+                f"Missing Bird-Bone AI specific pattern: {pattern}"
 
 
 class TestLFSTrackingFunctionality:

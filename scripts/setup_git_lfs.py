@@ -119,6 +119,22 @@ async def initialize_git_lfs(ctx: Ctx) -> Ctx:
     
     return ctx
 
+def extract_lfs_patterns_from_gitattributes(content: str) -> List[str]:
+    """Extract all LFS patterns from .gitattributes content"""
+    lfs_patterns = []
+    
+    for line in content.split('\n'):
+        line = line.strip()
+        # Skip comments and empty lines
+        if not line or line.startswith('#'):
+            continue
+        
+        # Check if line contains LFS filter configuration
+        if 'filter=lfs diff=lfs merge=lfs -text' in line:
+            lfs_patterns.append(line)
+    
+    return lfs_patterns
+
 async def validate_gitattributes(ctx: Ctx) -> Ctx:
     """Validate .gitattributes configuration"""
     if ctx['verbose']:
@@ -133,29 +149,47 @@ async def validate_gitattributes(ctx: Ctx) -> Ctx:
     try:
         content = gitattributes_path.read_text()
         
-        # Check for required patterns (aligned with research decisions)
-        required_patterns = [
+        # Extract all LFS patterns from .gitattributes (dynamic validation)
+        actual_lfs_patterns = extract_lfs_patterns_from_gitattributes(content)
+        
+        # Define critical patterns that MUST be present (core requirements)
+        critical_patterns = [
             '*.pt filter=lfs diff=lfs merge=lfs -text',
-            '*.safetensors filter=lfs diff=lfs merge=lfs -text',
+            '*.safetensors filter=lfs diff=lfs merge=lfs -text', 
             '*.gguf filter=lfs diff=lfs merge=lfs -text',
-            '*.bin filter=lfs diff=lfs merge=lfs -text',
-            '*.npz filter=lfs diff=lfs merge=lfs -text',
-            '*.h5 filter=lfs diff=lfs merge=lfs -text',
-            '*.tar.gz filter=lfs diff=lfs merge=lfs -text',
-            '*.zip filter=lfs diff=lfs merge=lfs -text'
+            '*.bin filter=lfs diff=lfs merge=lfs -text'
         ]
         
-        missing_patterns = []
-        for pattern in required_patterns:
+        # Check for critical patterns
+        missing_critical = []
+        for pattern in critical_patterns:
             if pattern not in content:
-                missing_patterns.append(pattern)
+                missing_critical.append(pattern)
         
-        if missing_patterns:
-            ctx['errors'].append(f"Missing LFS patterns: {missing_patterns}")
-        else:
+        if missing_critical:
+            ctx['errors'].append(f"Missing critical LFS patterns: {missing_critical}")
+        
+        # Validate that we have a reasonable number of patterns
+        if len(actual_lfs_patterns) < 10:
+            ctx['warnings'].append(f"Only {len(actual_lfs_patterns)} LFS patterns found - expected more comprehensive coverage")
+        
+        # Check pattern format validity
+        invalid_patterns = []
+        for pattern in actual_lfs_patterns:
+            parts = pattern.split()
+            if len(parts) < 4 or 'filter=lfs' not in parts or 'diff=lfs' not in parts or 'merge=lfs' not in parts or '-text' not in parts:
+                invalid_patterns.append(pattern)
+        
+        if invalid_patterns:
+            ctx['errors'].append(f"Invalid LFS pattern format: {invalid_patterns}")
+        
+        # Success if no critical patterns missing and no invalid patterns
+        if not missing_critical and not invalid_patterns:
             ctx['validation_results']['gitattributes_configured'] = True
             if ctx['verbose']:
-                print("✅ .gitattributes properly configured")
+                print(f"✅ .gitattributes properly configured ({len(actual_lfs_patterns)} LFS patterns found)")
+                if ctx['verbose'] and len(actual_lfs_patterns) > 0:
+                    print(f"  📋 Sample patterns: {actual_lfs_patterns[:3]}{'...' if len(actual_lfs_patterns) > 3 else ''}")
         
         # Check that pickle patterns are NOT present (research decision)
         pickle_patterns = ['*.pkl filter=lfs', '*.pickle filter=lfs']
@@ -167,7 +201,9 @@ async def validate_gitattributes(ctx: Ctx) -> Ctx:
         if found_pickle:
             ctx['warnings'].append(f"Pickle patterns found (should be removed per Issue #2): {found_pickle}")
         
-        ctx['lfs_patterns'] = required_patterns
+        # Store all found patterns for reference
+        ctx['lfs_patterns'] = actual_lfs_patterns
+        ctx['critical_patterns'] = critical_patterns
         
     except Exception as e:
         ctx['errors'].append(f"Error reading .gitattributes: {e}")
