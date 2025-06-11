@@ -95,7 +95,7 @@ class TestGitAttributesConfiguration:
             if 'filter=lfs' in line:
                 # Check LFS line format: pattern filter=lfs diff=lfs merge=lfs -text
                 parts = line.split()
-                assert len(parts) >= 4, f"Invalid LFS line format: {line}"
+                assert len(parts) == 5, f"Invalid LFS line format: {line}"
                 assert 'filter=lfs' in parts, f"Missing filter=lfs in: {line}"
                 assert 'diff=lfs' in parts, f"Missing diff=lfs in: {line}"
                 assert 'merge=lfs' in parts, f"Missing merge=lfs in: {line}"
