@@ -19,7 +19,7 @@ Each issue follows the format:
 
 ## 🏗️ Epic 1: Foundation & Infrastructure Setup
 
-### Issue #1: Create Core Repository Directory Structure ✅ **CREATED as GitHub Issue #2**
+### Issue #1: Create Core Repository Directory Structure
 **Related to:** US-1-1: Repository Structure Setup  
 **Labels:** `priority/high`, `epic/foundation`, `type/setup`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -47,7 +47,7 @@ Establish the foundational directory structure for the bird-bone AI project acco
 
 ---
 
-### Issue #2: Setup Python Environment Configuration Files ✅ **CREATED as GitHub Issue #3**
+### Issue #2: Setup Python Environment Configuration Files
 **Related to:** US-1-2: Python Environment Setup  
 **Labels:** `priority/high`, `epic/foundation`, `type/setup`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -73,7 +73,7 @@ Create comprehensive Python environment configuration files to ensure reproducib
 
 ---
 
-### Issue #3: Configure Git LFS for Large Binary Files ✅ **CREATED as GitHub Issue #5**
+### Issue #3: Configure Git LFS for Large Binary Files
 **Related to:** US-1-3: Git LFS and DVC Integration  
 **Labels:** `priority/high`, `epic/foundation`, `type/setup`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -99,7 +99,7 @@ Set up Git Large File Storage (LFS) to handle model files, weights, and other la
 
 ---
 
-### Issue #4: Initialize DVC for Model Versioning ✅ **CREATED as GitHub Issue #6**
+### Issue #4: Initialize DVC for Model Versioning
 **Related to:** US-1-3: Git LFS and DVC Integration  
 **Labels:** `priority/high`, `epic/foundation`, `type/setup`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -125,7 +125,7 @@ Initialize Data Version Control (DVC) system specifically for the `/models` dire
 
 ---
 
-### Issue #5: Setup Pre-commit Hooks for Code Quality ✅ **CREATED as GitHub Issue #7**
+### Issue #5: Setup Pre-commit Hooks for Code Quality
 **Related to:** US-1-4: Pre-commit Hooks Setup  
 **Labels:** `priority/medium`, `epic/foundation`, `type/tooling`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -152,7 +152,7 @@ Configure automated pre-commit hooks to enforce code quality, formatting standar
 
 ---
 
-### Issue #6: Create Custom Weight-Hash Hook for Model Files ✅ **CREATED as GitHub Issue #8**
+### Issue #6: Create Custom Weight-Hash Hook for Model Files
 **Related to:** US-1-4: Pre-commit Hooks Setup  
 **Labels:** `priority/medium`, `epic/foundation`, `type/tooling`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -178,8 +178,8 @@ Develop a custom pre-commit hook that generates and tracks hash signatures for m
 
 ---
 
-### Issue #7: Setup Basic CI/CD Pipeline with GitHub Actions ✅ **CREATED as GitHub Issue #9**
-**Related to:** US-1-5: Basic CI/CD
+### Issue #7: Setup Basic CI/CD Pipeline with GitHub Actions
+**Related to:** US-1-5: Basic CI/CD Pipeline  
 **Labels:** `priority/medium`, `epic/foundation`, `type/devops`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
 
@@ -205,7 +205,7 @@ Create a basic CI/CD pipeline using GitHub Actions to automate testing, linting,
 
 ---
 
-### Issue #8: Create Environment Setup Validation Script ✅ **CREATED as GitHub Issue #10**
+### Issue #8: Create Environment Setup Validation Script
 **Related to:** US-1-5: Basic CI/CD Pipeline  
 **Labels:** `priority/medium`, `epic/foundation`, `type/tooling`  
 **Milestone:** Epic 1 - Foundation & Infrastructure Setup
@@ -233,8 +233,510 @@ Develop a validation script that verifies the complete development environment s
 ---
 
 ## 🧠 Epic 2: Bird-Bone Compression Framework (BBCF)
+## Issue Structure
 
-### Issue #9: Implement Weight Importance Scoring Engine ✅ **CREATED as GitHub Issue #11**
+Each GitHub issue follows this format:
+- **Issue ID:** [Epic#]-[Story#]-[Issue#] 
+- **Title:** Descriptive action-oriented title
+- **Labels:** priority, epic, component, type
+- **Assignee:** TBD during sprint planning
+- **Milestone:** Sprint/release milestone
+- **Description:** Context, requirements, and acceptance criteria
+- **Related:** Links to user story and dependencies
+
+---
+
+## 🏗️ Epic 1: Foundation & Infrastructure Setup
+
+### US-1-1: Repository Structure Setup
+
+#### Issue 1-1-1: Create Core Directory Structure
+**Labels:** `epic:foundation`, `priority:high`, `type:setup`, `component:infrastructure`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create the foundational directory structure as outlined in the README repository map. This establishes the organizational framework for all project artifacts.
+
+**Requirements:**
+- Create all directories listed in README `/🗺 Repository Map`
+- Add appropriate `.gitkeep` files to maintain empty directories
+- Include brief README.md files in each directory explaining purpose
+
+**Acceptance Criteria:**
+- [ ] `/config` directory created with README.md explaining YAML/Pydantic manifests
+- [ ] `/pipelines` directory created with README.md explaining Kedro/Airflow DAGs  
+- [ ] `/scripts` directory created with README.md explaining standalone helpers
+- [ ] `/diffs` directory created with README.md explaining auto-generated patches
+- [ ] `/notebooks` directory created with README.md explaining dashboards
+- [ ] `/requirements` directory created with README.md explaining living specs
+- [ ] `/models` directory created with README.md explaining versioned checkpoints
+- [ ] `/docs` directory created with README.md explaining generated diagrams
+- [ ] All directories tracked in git with `.gitkeep` files
+- [ ] Directory structure matches README repository map exactly
+
+**Definition of Done:**
+- All directories exist and are tracked in version control
+- Each directory has clear documentation of its purpose
+- Directory structure validated against README specification
+
+---
+
+#### Issue 1-1-2: Initialize Directory Documentation
+**Labels:** `epic:foundation`, `priority:medium`, `type:documentation`, `component:infrastructure`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create comprehensive README.md files for each directory explaining their purpose, expected contents, and usage patterns within the bird-bone AI project.
+
+**Requirements:**
+- Document the purpose and scope of each directory
+- Provide examples of expected file types and naming conventions
+- Include links to relevant sections of main README.md
+
+**Acceptance Criteria:**
+- [ ] Each directory README.md explains its specific purpose in the project
+- [ ] File naming conventions documented for each directory
+- [ ] Expected file types and formats listed
+- [ ] Links to main README.md sections provided where relevant
+- [ ] Examples of proper usage included
+- [ ] Consistent formatting across all directory READMEs
+
+**Definition of Done:**
+- All directories have comprehensive documentation
+- Documentation follows consistent formatting standards
+- Examples and conventions clearly explained
+
+---
+
+### US-1-2: Python Environment Setup
+
+#### Issue 1-2-1: Create Core Requirements File
+**Labels:** `epic:foundation`, `priority:high`, `type:setup`, `component:environment`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Create a comprehensive `requirements.txt` file with all core dependencies needed for the bird-bone AI compression pipeline, including specific version constraints for critical packages.
+
+**Requirements:**
+- Include all dependencies mentioned in README quick-start
+- Specify version constraints for stability and reproducibility
+- Organize dependencies by functional groups with comments
+- Ensure compatibility across dependencies
+
+**Acceptance Criteria:**
+- [ ] `requirements.txt` includes torch with CUDA support
+- [ ] transformers library with appropriate version constraint
+- [ ] bitsandbytes for quantization support
+- [ ] sparsegpt for pruning algorithms
+- [ ] kedro for pipeline orchestration
+- [ ] dvc for data/model versioning
+- [ ] nbdime for notebook diffing
+- [ ] pytest for testing framework
+- [ ] black and flake8 for code quality
+- [ ] jupyter and related packages for notebooks
+- [ ] All dependencies include version constraints
+- [ ] Dependencies organized with descriptive comments
+- [ ] File validates with `pip check` after installation
+
+**Definition of Done:**
+- Requirements file installs successfully in clean environment
+- All dependencies are compatible with each other
+- Version constraints ensure reproducible builds
+
+---
+
+#### Issue 1-2-2: Create Conda Environment Configuration
+**Labels:** `epic:foundation`, `priority:high`, `type:setup`, `component:environment`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create an `environment.yml` file for conda environment management that includes both conda and pip dependencies, ensuring optimal package resolution and GPU support.
+
+**Requirements:**
+- Define conda environment with Python 3.11
+- Include conda-forge packages where beneficial
+- Reference requirements.txt for pip-only packages
+- Configure for CUDA GPU support
+
+**Acceptance Criteria:**
+- [ ] `environment.yml` specifies Python 3.11
+- [ ] Uses conda-forge channel for better package availability
+- [ ] Includes PyTorch with CUDA support from conda
+- [ ] References `requirements.txt` for pip dependencies
+- [ ] Includes environment name "naif" as mentioned in README
+- [ ] GPU support configured for CUDA development
+- [ ] Environment creates successfully with `conda env create`
+- [ ] All packages resolve without conflicts
+
+**Definition of Done:**
+- Conda environment creates successfully from scratch
+- GPU support verified if CUDA available
+- Environment matches requirements.txt dependencies
+
+---
+
+#### Issue 1-2-3: Create Environment Setup Script
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:environment`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create a setup script that automates the environment creation process and validates the installation, making onboarding easier for new developers.
+
+**Requirements:**
+- Automate conda environment creation
+- Validate installation completeness
+- Provide clear success/failure feedback
+- Include troubleshooting guidance
+
+**Acceptance Criteria:**
+- [ ] Shell script `setup_environment.sh` created
+- [ ] Checks for conda installation and version
+- [ ] Creates conda environment from environment.yml
+- [ ] Installs additional pip requirements
+- [ ] Validates critical package imports (torch, transformers, etc.)
+- [ ] Tests GPU availability if applicable
+- [ ] Provides clear success message with next steps
+- [ ] Includes troubleshooting section for common issues
+- [ ] Script is idempotent (safe to run multiple times)
+
+**Definition of Done:**
+- Script successfully creates environment from scratch
+- Validation catches missing or broken installations
+- Clear feedback provided for all scenarios
+
+---
+
+### US-1-3: Git LFS and DVC Integration
+
+#### Issue 1-3-1: Configure Git LFS for Model Files
+**Labels:** `epic:foundation`, `priority:high`, `type:setup`, `component:versioning`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Configure Git LFS to handle large model files and weights, ensuring the repository remains lightweight while properly tracking binary artifacts.
+
+**Requirements:**
+- Configure LFS for model file extensions
+- Set up appropriate file patterns and size thresholds
+- Ensure remote LFS storage is configured
+- Document LFS workflow for team
+
+**Acceptance Criteria:**
+- [ ] `.gitattributes` file created with LFS patterns
+- [ ] Model files tracked: `*.pt`, `*.safetensors`, `*.gguf`, `*.bin`
+- [ ] Large data files tracked: `*.pkl`, `*.h5`, `*.hdf5`
+- [ ] Archive files tracked: `*.tar.gz`, `*.zip` (>10MB)
+- [ ] LFS initialized in repository with `git lfs install`
+- [ ] Remote LFS storage configured (GitHub LFS or custom)
+- [ ] LFS tracking verified with `git lfs track`
+- [ ] Documentation added to README about LFS usage
+- [ ] Test model file upload/download workflow
+
+**Definition of Done:**
+- LFS properly tracks all specified file types
+- Remote storage accessible and functional
+- Team workflow documented and tested
+
+---
+
+#### Issue 1-3-2: Initialize DVC for Model Versioning
+**Labels:** `epic:foundation`, `priority:high`, `type:setup`, `component:versioning`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Initialize DVC (Data Version Control) in the `/models` subdirectory to provide advanced versioning capabilities for model weights, training data, and experiment artifacts.
+
+**Requirements:**
+- Initialize DVC in models subdirectory
+- Configure remote storage for DVC artifacts
+- Set up DVC pipeline integration points
+- Create example tracking workflow
+
+**Acceptance Criteria:**
+- [ ] DVC initialized in `/models` directory with `dvc init --subdir models`
+- [ ] `.dvc` directory created with proper configuration
+- [ ] Remote storage configured (S3, GCS, or local network storage)
+- [ ] `.dvcignore` file created with appropriate exclusions
+- [ ] DVC cache configured for optimal performance
+- [ ] Integration with Git configured properly
+- [ ] Example model tracking workflow documented
+- [ ] DVC pipeline structure planned for future automation
+- [ ] Test DVC push/pull operations
+
+**Definition of Done:**
+- DVC initializes and operates correctly
+- Remote storage functional for team access
+- Workflow documented for model versioning
+
+---
+
+#### Issue 1-3-3: Create Model Tracking Workflow Documentation
+**Labels:** `epic:foundation`, `priority:medium`, `type:documentation`, `component:versioning`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create comprehensive documentation for model and data versioning workflows using both Git LFS and DVC, including best practices and common operations.
+
+**Requirements:**
+- Document Git LFS workflow for large files
+- Document DVC workflow for model versioning
+- Provide examples of common operations
+- Include troubleshooting guide
+
+**Acceptance Criteria:**
+- [ ] Git LFS workflow documented with examples
+- [ ] DVC workflow documented with examples
+- [ ] Common commands and operations listed
+- [ ] Best practices for file organization
+- [ ] Troubleshooting guide for common issues
+- [ ] Integration between LFS and DVC explained
+- [ ] Team collaboration workflows documented
+- [ ] Version tagging and release process defined
+- [ ] Recovery procedures for corrupted files
+
+**Definition of Done:**
+- Comprehensive documentation covers all versioning scenarios
+- Examples are tested and functional
+- Team can follow workflows independently
+
+---
+
+### US-1-4: Pre-commit Hooks Setup
+
+#### Issue 1-4-1: Configure Code Quality Pre-commit Hooks
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:quality`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Set up pre-commit hooks for automated code quality checks including formatting, linting, and style enforcement to maintain consistent code quality across the project.
+
+**Requirements:**
+- Configure black for Python code formatting
+- Set up flake8 for linting and style checking
+- Add isort for import organization
+- Include basic security checks
+
+**Acceptance Criteria:**
+- [ ] `.pre-commit-config.yaml` file created
+- [ ] Black formatter hook configured with line length 88
+- [ ] Flake8 linter hook configured with project-specific rules
+- [ ] isort hook configured for import sorting
+- [ ] bandit hook for security issue detection
+- [ ] pre-commit-hooks basic checks (trailing whitespace, etc.)
+- [ ] Hooks configured to run on Python files
+- [ ] Configuration tested with sample code files
+- [ ] Installation instructions added to README
+
+**Definition of Done:**
+- Pre-commit hooks install and run successfully
+- Code quality standards enforced automatically
+- Configuration documented for team use
+
+---
+
+#### Issue 1-4-2: Add Markdown and Documentation Hooks
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:quality`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Configure pre-commit hooks for markdown formatting and documentation quality to ensure consistent documentation standards across the project.
+
+**Requirements:**
+- Set up mdformat for markdown standardization
+- Add markdown link checking
+- Include spell checking capabilities
+- Configure for project documentation
+
+**Acceptance Criteria:**
+- [ ] mdformat hook configured for markdown files
+- [ ] markdown-link-check hook for broken link detection
+- [ ] codespell hook for spell checking
+- [ ] Hooks apply to `.md`, `.rst`, and documentation files
+- [ ] Configuration excludes generated files appropriately
+- [ ] Custom word list for technical terms
+- [ ] Integration with existing pre-commit configuration
+- [ ] Test hooks on existing documentation files
+
+**Definition of Done:**
+- Documentation hooks maintain formatting standards
+- Link checking prevents broken references
+- Spell checking improves documentation quality
+
+---
+
+#### Issue 1-4-3: Create Custom Weight-Hash Hook
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:versioning`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Develop a custom pre-commit hook that generates and tracks hash signatures for model weight files, enabling detection of unauthorized or accidental weight modifications.
+
+**Requirements:**
+- Create Python script for weight file hashing
+- Integrate with pre-commit framework
+- Track hash changes in version control
+- Provide clear change notifications
+
+**Acceptance Criteria:**
+- [ ] Python script `scripts/weight_hash_hook.py` created
+- [ ] Supports common weight formats (*.pt, *.safetensors, *.gguf)
+- [ ] Generates SHA256 hashes for weight files
+- [ ] Stores hashes in `.weight_hashes.json` file
+- [ ] Pre-commit hook configuration added
+- [ ] Detects and reports weight file changes
+- [ ] Provides clear diff output for weight modifications
+- [ ] Handles new files and deletions appropriately
+- [ ] Integration tested with sample weight files
+
+**Definition of Done:**
+- Custom hook detects all weight file modifications
+- Hash tracking is reliable and consistent
+- Clear reporting helps developers understand changes
+
+---
+
+#### Issue 1-4-4: Create Pre-commit Installation Script
+**Labels:** `epic:foundation`, `priority:low`, `type:automation`, `component:setup`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Create an automated installation script for pre-commit hooks that simplifies onboarding and ensures consistent setup across all development environments.
+
+**Requirements:**
+- Automate pre-commit installation and setup
+- Validate hook configuration
+- Provide troubleshooting guidance
+- Integrate with main setup script
+
+**Acceptance Criteria:**
+- [ ] Shell script `scripts/install_precommit.sh` created
+- [ ] Checks for pre-commit installation
+- [ ] Installs pre-commit if missing
+- [ ] Runs `pre-commit install` to activate hooks
+- [ ] Validates hook configuration
+- [ ] Tests hooks with sample commits
+- [ ] Provides clear feedback on success/failure
+- [ ] Integration with main environment setup script
+- [ ] Documentation updated with installation instructions
+
+**Definition of Done:**
+- Script reliably installs and configures pre-commit
+- Validation ensures hooks work correctly
+- Documentation supports team onboarding
+
+---
+
+### US-1-5: Basic CI/CD Pipeline
+
+#### Issue 1-5-1: Create GitHub Actions Workflow
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:cicd`  
+**Story Points:** 2  
+**Sprint:** 1
+
+**Description:**
+Set up a basic GitHub Actions workflow that runs code quality checks, linting, and basic tests on pull requests and pushes to main branch.
+
+**Requirements:**
+- Configure workflow triggers for PR and main branch
+- Set up Python environment in CI
+- Run linting and formatting checks
+- Execute basic test suite
+
+**Acceptance Criteria:**
+- [ ] `.github/workflows/ci.yml` file created
+- [ ] Workflow triggers on pull requests and pushes to main
+- [ ] Python 3.11 environment configured with caching
+- [ ] Dependencies installed from requirements.txt
+- [ ] Black formatter check runs
+- [ ] Flake8 linting check runs
+- [ ] pytest execution for existing tests
+- [ ] Workflow status badges added to README
+- [ ] Clear failure reporting and logging
+
+**Definition of Done:**
+- CI workflow runs successfully on sample changes
+- All quality checks execute and report correctly
+- Failures provide actionable feedback
+
+---
+
+#### Issue 1-5-2: Add Environment Validation Checks
+**Labels:** `epic:foundation`, `priority:medium`, `type:automation`, `component:cicd`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Extend the CI pipeline to validate that the development environment can be set up correctly and that all critical dependencies are properly configured.
+
+**Requirements:**
+- Validate requirements.txt installation
+- Test critical package imports
+- Check environment compatibility
+- Verify configuration files
+
+**Acceptance Criteria:**
+- [ ] Requirements installation validation added to CI
+- [ ] Critical package import tests (torch, transformers, etc.)
+- [ ] CUDA availability check (if applicable)
+- [ ] Configuration file validation (YAML, JSON)
+- [ ] Pre-commit hooks installation test
+- [ ] DVC and Git LFS functionality verification
+- [ ] Environment variables and setup validation
+- [ ] Matrix testing for different Python versions (optional)
+
+**Definition of Done:**
+- Environment validation catches setup issues
+- CI verifies complete development environment
+- Failures clearly indicate missing dependencies
+
+---
+
+#### Issue 1-5-3: Configure Workflow Security and Permissions
+**Labels:** `epic:foundation`, `priority:high`, `type:security`, `component:cicd`  
+**Story Points:** 1  
+**Sprint:** 1
+
+**Description:**
+Configure appropriate security settings and permissions for GitHub Actions workflows to ensure secure CI/CD operations while maintaining necessary functionality.
+
+**Requirements:**
+- Set minimal required permissions
+- Configure secure handling of secrets
+- Implement security scanning
+- Document security practices
+
+**Acceptance Criteria:**
+- [ ] Workflow permissions set to minimal required access
+- [ ] Secrets handling configured for external services
+- [ ] Security scanning integrated (CodeQL, dependency check)
+- [ ] No hardcoded credentials or sensitive data
+- [ ] Branch protection rules documented
+- [ ] Security best practices documented
+- [ ] Regular security updates configured
+- [ ] Audit trail for CI/CD operations
+
+**Definition of Done:**
+- Security scan passes without issues
+- Permissions follow principle of least access
+- Security documentation complete
+
+---
+
+## 🧠 Epic 2: Bird-Bone Compression Framework (BBCF)
+
+### Issue #9: Implement Weight Importance Scoring Engine
 **Related to:** US-2-1: Weight Analysis Engine  
 **Labels:** `priority/high`, `epic/bbcf`, `type/algorithm`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
@@ -286,7 +788,7 @@ Build interactive visualization tools to help understand weight importance distr
 
 ---
 
-### Issue #11: Develop Growth Plate Identification Algorithm ✅ **CREATED as GitHub Issue #13**
+### Issue #11: Develop Growth Plate Identification Algorithm
 **Related to:** US-2-2: Growth Plate Shedding Algorithm  
 **Labels:** `priority/high`, `epic/bbcf`, `type/algorithm`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
@@ -312,7 +814,7 @@ Implement the core biologically-inspired algorithm that identifies "growth plate
 
 ---
 
-### Issue #12: Implement Safe Weight Shedding Mechanism ✅ **CREATED as GitHub Issue #14**
+### Issue #12: Implement Safe Weight Shedding Mechanism
 **Related to:** US-2-2: Growth Plate Shedding Algorithm  
 **Labels:** `priority/high`, `epic/bbcf`, `type/algorithm`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
@@ -364,7 +866,7 @@ Develop a robust checkpoint and rollback system that can safely revert weight re
 
 ---
 
-### Issue #14: Create Performance Monitoring During Compression ✅ **CREATED as GitHub Issue #16**
+### Issue #14: Create Performance Monitoring During Compression
 **Related to:** US-2-3: Safe Weight Removal System  
 **Labels:** `priority/high`, `epic/bbcf`, `type/monitoring`  
 **Milestone:** Epic 2 - Bird-Bone Compression Framework
@@ -470,7 +972,7 @@ Create comprehensive benchmarking system to measure and validate the effectivene
 
 ## 🌿 Epic 3: Biophase Adaptive Pruning (BAP)
 
-### Issue #18: Implement Neural Network Clustering Algorithm ✅ (GitHub #19)
+### Issue #18: Implement Neural Network Clustering Algorithm
 **Related to:** US-3-1: Neural Cluster Analysis  
 **Labels:** `priority/high`, `epic/bap`, `type/algorithm`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -496,7 +998,7 @@ Develop intelligent clustering algorithms to group neural network nodes based on
 
 ---
 
-### Issue #19: Create Cluster Visualization and Analysis Tools ✅ (GitHub #20)
+### Issue #19: Create Cluster Visualization and Analysis Tools
 **Related to:** US-3-1: Neural Cluster Analysis  
 **Labels:** `priority/medium`, `epic/bap`, `type/visualization`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -522,7 +1024,7 @@ Build comprehensive visualization and analysis tools to understand neural cluste
 
 ---
 
-### Issue #20: Develop Cluster-Specific Pruning Thresholds ✅ (GitHub #21)
+### Issue #20: Develop Cluster-Specific Pruning Thresholds
 **Related to:** US-3-2: Adaptive Pruning Thresholds  
 **Labels:** `priority/high`, `epic/bap`, `type/algorithm`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -548,7 +1050,7 @@ Create adaptive pruning threshold system that calculates and applies cluster-spe
 
 ---
 
-### Issue #21: Implement Threshold Optimization with Performance Feedback ✅ (GitHub #22)
+### Issue #21: Implement Threshold Optimization with Performance Feedback
 **Related to:** US-3-2: Adaptive Pruning Thresholds  
 **Labels:** `priority/high`, `epic/bap`, `type/optimization`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -574,7 +1076,7 @@ Develop an optimization system that continuously refines pruning thresholds base
 
 ---
 
-### Issue #22: Create QLoRA-based Micro-Tuning System ✅ (GitHub #23)
+### Issue #22: Create QLoRA-based Micro-Tuning System
 **Related to:** US-3-3: Self-Healing Micro-Tuning  
 **Labels:** `priority/high`, `epic/bap`, `type/algorithm`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -600,7 +1102,7 @@ Implement a QLoRA-based micro-tuning system that can heal damaged neural pathway
 
 ---
 
-### Issue #23: Develop Damage Detection and Assessment ✅ (GitHub #24)
+### Issue #23: Develop Damage Detection and Assessment
 **Related to:** US-3-3: Self-Healing Micro-Tuning  
 **Labels:** `priority/high`, `epic/bap`, `type/monitoring`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -626,7 +1128,7 @@ Create intelligent damage detection system that can identify and assess neural p
 
 ---
 
-### Issue #24: Implement Wave-based Pruning Scheduler ✅ (GitHub #25)
+### Issue #24: Implement Wave-based Pruning Scheduler
 **Related to:** US-3-4: Gradual Pruning Waves  
 **Labels:** `priority/medium`, `epic/bap`, `type/scheduler`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -652,7 +1154,7 @@ Create a sophisticated scheduling system that manages gradual pruning waves, ens
 
 ---
 
-### Issue #25: Create Wave Progress Monitoring Dashboard ✅ (GitHub #26)
+### Issue #25: Create Wave Progress Monitoring Dashboard
 **Related to:** US-3-4: Gradual Pruning Waves  
 **Labels:** `priority/medium`, `epic/bap`, `type/visualization`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -678,7 +1180,7 @@ Build comprehensive monitoring dashboard to track pruning wave progress, effecti
 
 ---
 
-### Issue #26: Implement Real-time Loss Spike Detection ✅ (GitHub #27)
+### Issue #26: Implement Real-time Loss Spike Detection
 **Related to:** US-3-5: Loss Spike Detection and Recovery  
 **Labels:** `priority/high`, `epic/bap`, `type/monitoring`  
 **Milestone:** Epic 3 - Biophase Adaptive Pruning
@@ -708,7 +1210,7 @@ Develop sophisticated loss spike detection system that can identify performance 
 
 ## 🔬 Epic 4: Quantization & Low-Rank Factorization
 
-### Issue #27: Implement Dynamic Quantization Engine ✅ (GitHub #28)
+### Issue #27: Implement Dynamic Quantization Engine
 **Related to:** US-4-1: Dynamic Quantization System  
 **Labels:** `priority/high`, `epic/quantization`, `type/feature`  
 **Milestone:** Epic 4 - Quantization & Low-Rank Factorization
@@ -760,7 +1262,7 @@ Create sophisticated low-rank matrix factorization capabilities for model compre
 
 ---
 
-### Issue #29: Create Cross-Technique Optimization Pipeline ✅ (GitHub #27)
+### Issue #29: Create Cross-Technique Optimization Pipeline
 **Related to:** US-4-3: Integrated Compression Pipeline  
 **Labels:** `priority/high`, `epic/quantization`, `type/integration`  
 **Milestone:** Epic 4 - Quantization & Low-Rank Factorization
@@ -786,7 +1288,7 @@ Develop unified optimization pipeline that combines pruning, quantization, and f
 
 ---
 
-### Issue #30: Implement Hardware-Aware Compression Strategies ✅ (GitHub #28)
+### Issue #30: Implement Hardware-Aware Compression Strategies
 **Related to:** US-4-4: Hardware-Aware Optimization  
 **Labels:** `priority/medium`, `epic/quantization`, `type/optimization`  
 **Milestone:** Epic 4 - Quantization & Low-Rank Factorization
@@ -814,7 +1316,7 @@ Create hardware-aware compression optimization system that tailors compression s
 
 ## 🧠 Epic 5: Neurostructured AI Flow (NAIF)
 
-### Issue #31: Design Federated Model Architecture System ✅ (GitHub #29)
+### Issue #31: Design Federated Model Architecture System
 **Related to:** US-5-1: Federated Model Architecture  
 **Labels:** `priority/high`, `epic/naif`, `type/architecture`  
 **Milestone:** Epic 5 - Neurostructured AI Flow
@@ -866,7 +1368,7 @@ Create robust communication system for model mesh networks that enables efficien
 
 ---
 
-### Issue #33: Develop Cross-Model Knowledge Transfer System ✅ (GitHub #31)
+### Issue #33: Develop Cross-Model Knowledge Transfer System
 **Related to:** US-5-3: Cross-Model Knowledge Transfer  
 **Labels:** `priority/high`, `epic/naif`, `type/feature`  
 **Milestone:** Epic 5 - Neurostructured AI Flow
@@ -892,7 +1394,7 @@ Create sophisticated knowledge transfer system that enables models to share lear
 
 ---
 
-### Issue #34: Create Adaptive Flow Control Mechanisms ✅ (GitHub #32)
+### Issue #34: Create Adaptive Flow Control Mechanisms
 **Related to:** US-5-4: Adaptive Flow Control  
 **Labels:** `priority/medium`, `epic/naif`, `type/control`  
 **Milestone:** Epic 5 - Neurostructured AI Flow
@@ -918,7 +1420,7 @@ Develop intelligent flow control system that dynamically manages computational r
 
 ---
 
-### Issue #35: Implement Distributed Inference Coordination ✅ (GitHub #33)
+### Issue #35: Implement Distributed Inference Coordination
 **Related to:** US-5-5: Distributed Inference Engine  
 **Labels:** `priority/high`, `epic/naif`, `type/inference`  
 **Milestone:** Epic 5 - Neurostructured AI Flow
@@ -946,7 +1448,7 @@ Create distributed inference coordination system that efficiently manages model 
 
 ## 🔄 Epic 6: Automation Pipeline
 
-### Issue #36: Develop Intelligent Automation Engine ✅ (GitHub #34)
+### Issue #36: Develop Intelligent Automation Engine
 **Related to:** US-6-1: Intelligent Automation System  
 **Labels:** `priority/high`, `epic/automation`, `type/core`  
 **Milestone:** Epic 6 - Automation Pipeline
@@ -972,7 +1474,7 @@ Create sophisticated automation engine that can intelligently manage model compr
 
 ---
 
-### Issue #37: Create Multi-Model Pipeline Orchestration ✅ (GitHub #35)
+### Issue #37: Create Multi-Model Pipeline Orchestration
 **Related to:** US-6-2: Multi-Model Pipeline Management  
 **Labels:** `priority/medium`, `epic/automation`, `type/orchestration`  
 **Milestone:** Epic 6 - Automation Pipeline
@@ -998,7 +1500,7 @@ Develop comprehensive pipeline orchestration system that can manage multiple mod
 
 ---
 
-### Issue #38: Implement Continuous Integration for Model Compression ✅ (GitHub #36)
+### Issue #38: Implement Continuous Integration for Model Compression
 **Related to:** US-6-3: Continuous Model Integration  
 **Labels:** `priority/high`, `epic/automation`, `type/ci`  
 **Milestone:** Epic 6 - Automation Pipeline
@@ -1029,8 +1531,7 @@ Create continuous integration system specifically designed for model compression
 ### Issue #39: Design Comprehensive Model State Tracking
 **Related to:** US-7-1: Model State Tracking System  
 **Labels:** `priority/high`, `epic/safety`, `type/tracking`  
-**Milestone:** Epic 7 - Diff & Revert Safety Net  
-**Status:** ✅ [GitHub Issue #38](https://github.com/orchestrate-solutions/bird-bone-ai/issues/38)
+**Milestone:** Epic 7 - Diff & Revert Safety Net
 
 **Description:**
 Develop comprehensive model state tracking system that captures all model changes, enables precise diff generation, and supports reliable revert operations.
@@ -1056,8 +1557,7 @@ Develop comprehensive model state tracking system that captures all model change
 ### Issue #40: Create Intelligent Revert Decision Engine
 **Related to:** US-7-2: Intelligent Revert System  
 **Labels:** `priority/medium`, `epic/safety`, `type/decision`  
-**Milestone:** Epic 7 - Diff & Revert Safety Net  
-**Status:** ✅ [GitHub Issue #39](https://github.com/orchestrate-solutions/bird-bone-ai/issues/39)
+**Milestone:** Epic 7 - Diff & Revert Safety Net
 
 **Description:**
 Develop intelligent decision engine that can automatically determine when to trigger model reverts based on performance degradation, safety violations, or other critical criteria.
@@ -1083,11 +1583,11 @@ Develop intelligent decision engine that can automatically determine when to tri
 ### Issue #41: Implement Git-Like Version Control for Models
 **Related to:** US-7-3: Model Version Control System  
 **Labels:** `priority/high`, `epic/safety`, `type/versioning`  
-**Milestone:** Epic 7 - Diff & Revert Safety Net  
-**Status:** ✅ [GitHub Issue #40](https://github.com/orchestrate-solutions/bird-bone-ai/issues/40)
+**Milestone:** Epic 7 - Diff & Revert Safety Net
 
 **Description:**
 Create Git-like version control system specifically designed for machine learning models, supporting branching, merging, and collaborative model development.
+
 **Acceptance Criteria:**
 - [ ] Implement model branching and merging algorithms
 - [ ] Create collaborative model development workflows
@@ -1111,8 +1611,7 @@ Create Git-like version control system specifically designed for machine learnin
 ### Issue #42: Develop Real-time Performance Monitoring Dashboard
 **Related to:** US-8-1: Real-time Performance Monitoring  
 **Labels:** `priority/high`, `epic/monitoring`, `type/dashboard`  
-**Milestone:** Epic 8 - Monitoring & Guardrails  
-**Status:** ✅ [GitHub Issue #41](https://github.com/orchestrate-solutions/bird-bone-ai/issues/41)
+**Milestone:** Epic 8 - Monitoring & Guardrails
 
 **Description:**
 Create comprehensive real-time monitoring dashboard that provides visibility into model compression processes, performance metrics, and system health.
@@ -1125,7 +1624,7 @@ Create comprehensive real-time monitoring dashboard that provides visibility int
 - [ ] Create performance baseline tracking and comparison
 - [ ] Add drill-down capabilities for detailed analysis
 - [ ] Implement dashboard customization and user preferences
-- [ ] Include mobile-responsive design and offline capabilities
+- [ ] Include mobile-responsive design for on-the-go monitoring
 
 **Implementation Notes:**
 - Use efficient time-series databases for metrics storage
@@ -1138,8 +1637,7 @@ Create comprehensive real-time monitoring dashboard that provides visibility int
 ### Issue #43: Create Automated Safety and Compliance Checking
 **Related to:** US-8-2: Safety and Compliance Framework  
 **Labels:** `priority/high`, `epic/monitoring`, `type/safety`  
-**Milestone:** Epic 8 - Monitoring & Guardrails  
-**Status:** ✅ [GitHub Issue #42](https://github.com/orchestrate-solutions/bird-bone-ai/issues/42)
+**Milestone:** Epic 8 - Monitoring & Guardrails
 
 **Description:**
 Develop comprehensive safety and compliance checking system that automatically validates model compression operations against established safety standards and compliance requirements.
@@ -1165,8 +1663,7 @@ Develop comprehensive safety and compliance checking system that automatically v
 ### Issue #44: Implement Predictive Analytics for System Optimization
 **Related to:** US-8-3: Predictive Analytics Engine  
 **Labels:** `priority/medium`, `epic/monitoring`, `type/analytics`  
-**Milestone:** Epic 8 - Monitoring & Guardrails  
-**Status:** ✅ [GitHub Issue #43](https://github.com/orchestrate-solutions/bird-bone-ai/issues/43)
+**Milestone:** Epic 8 - Monitoring & Guardrails
 
 **Description:**
 Create predictive analytics engine that can forecast system behavior, predict potential issues, and recommend optimization strategies based on historical data and trends.
@@ -1194,8 +1691,7 @@ Create predictive analytics engine that can forecast system behavior, predict po
 ### Issue #45: Create Comprehensive Model Testing Suite
 **Related to:** US-9-1: Comprehensive Model Testing  
 **Labels:** `priority/high`, `epic/testing`, `type/framework`  
-**Milestone:** Epic 9 - Testing & Validation Framework  
-**Status:** ✅ [GitHub Issue #44](https://github.com/orchestrate-solutions/bird-bone-ai/issues/44)
+**Milestone:** Epic 9 - Testing & Validation Framework
 
 **Description:**
 Develop comprehensive testing framework specifically designed for validating compressed models across multiple dimensions including performance, safety, robustness, and compatibility.
@@ -1221,8 +1717,7 @@ Develop comprehensive testing framework specifically designed for validating com
 ### Issue #46: Implement Automated Benchmarking System
 **Related to:** US-9-2: Automated Benchmarking  
 **Labels:** `priority/medium`, `epic/testing`, `type/benchmarking`  
-**Milestone:** Epic 9 - Testing & Validation Framework  
-**Status:** ✅ [GitHub Issue #50](https://github.com/orchestrate-solutions/bird-bone-ai/issues/50)
+**Milestone:** Epic 9 - Testing & Validation Framework
 
 **Description:**
 Create automated benchmarking system that can evaluate compressed models against standard benchmarks and provide comparative analysis with baseline models.
@@ -1248,8 +1743,7 @@ Create automated benchmarking system that can evaluate compressed models against
 ### Issue #47: Develop Continuous Validation Pipeline
 **Related to:** US-9-3: Continuous Validation  
 **Labels:** `priority/high`, `epic/testing`, `type/pipeline`  
-**Milestone:** Epic 9 - Testing & Validation Framework  
-**Status:** ✅ [GitHub Issue #46](https://github.com/orchestrate-solutions/bird-bone-ai/issues/46)
+**Milestone:** Epic 9 - Testing & Validation Framework
 
 **Description:**
 Create continuous validation pipeline that automatically validates model compression results throughout the development and deployment lifecycle.
@@ -1277,8 +1771,7 @@ Create continuous validation pipeline that automatically validates model compres
 ### Issue #48: Create Interactive Documentation System
 **Related to:** US-10-1: Interactive Documentation Platform  
 **Labels:** `priority/medium`, `epic/documentation`, `type/platform`  
-**Milestone:** Epic 10 - Documentation & Knowledge Base  
-**Status:** ✅ [GitHub Issue #47](https://github.com/orchestrate-solutions/bird-bone-ai/issues/47)
+**Milestone:** Epic 10 - Documentation & Knowledge Base
 
 **Description:**
 Develop comprehensive interactive documentation system that provides searchable, up-to-date documentation with examples, tutorials, and API references.
@@ -1304,8 +1797,7 @@ Develop comprehensive interactive documentation system that provides searchable,
 ### Issue #49: Implement Automated Knowledge Extraction
 **Related to:** US-10-2: Automated Knowledge Management  
 **Labels:** `priority/low`, `epic/documentation`, `type/automation`  
-**Milestone:** Epic 10 - Documentation & Knowledge Base  
-**Status:** ✅ [GitHub Issue #48](https://github.com/orchestrate-solutions/bird-bone-ai/issues/48)
+**Milestone:** Epic 10 - Documentation & Knowledge Base
 
 **Description:**
 Create automated knowledge extraction system that can generate documentation, tutorials, and best practices from code, experiments, and user interactions.
@@ -1331,8 +1823,7 @@ Create automated knowledge extraction system that can generate documentation, tu
 ### Issue #50: Develop Community Learning Platform
 **Related to:** US-10-3: Community Learning System  
 **Labels:** `priority/low`, `epic/documentation`, `type/community`  
-**Milestone:** Epic 10 - Documentation & Knowledge Base  
-**Status:** ✅ [GitHub Issue #51](https://github.com/orchestrate-solutions/bird-bone-ai/issues/51)
+**Milestone:** Epic 10 - Documentation & Knowledge Base
 
 **Description:**
 Create community-driven learning platform that enables knowledge sharing, collaborative problem-solving, and continuous learning among users.

@@ -7,17 +7,18 @@
 ---
 
 ## ✨ Vision
-Turn heavyweight language/vision models into **agile, biologically patterned intelligences** that run at 20-30 % of their original compute cost while losing ≤ 3 % task accuracy—using the same design wisdom God wove into hollow bird bones, synaptic pruning, and human override capacity.
+Turn heavyweight language/vision models into **agile, biologically patterned intelligences** that run at 20-30 % of their original compute cost while losing ≤ 3 % task accuracy—using the same design wisdom that creates hollow bird bones through **adaptive density loss and strategic healing cycles**. Like bones in zero gravity that naturally shed unnecessary density while maintaining structural integrity, we simulate optimal weight decay followed by targeted reinforcement to achieve maximum strength-to-weight ratios.
 
 ---
 
 ## 🚀 Core Objectives
-1. **Bird-Bone Compression (BBCF)** – remove post-training support weights the way bone sheds growth plates.  
-2. **Biophase Adaptive Pruning (BAP)** – cluster-aware, slow-radius pruning with built-in “self-healing” micro-tunes.  
-3. **Quantization & Low-Rank Factorization** – compress precision and re-factor matrices for 4 × memory cuts.  
-4. **Neurostructured AI Flow (NAIF)** – re-route tokens through convergence hubs (digital hippocampus) for unified multi-modal reasoning.  
-5. **Automation Pipeline** – YAML-driven, reproducible growth → prune → heal loop, outputting ready-to-serve INT4 GGUF weights.  
-6. **Diff & Revert Safety Net** – track every code, config, weight, and doc change with deterministic diffing so we can roll back *any* layer of the stack without drama.
+1. **Bird-Bone Density Reduction (BBDR)** – simulate natural bone density loss by removing redundant neural pathways, mimicking how bones shed unnecessary mass in low-gravity environments.  
+2. **Adaptive Healing Cycles (AHC)** – strategic reinforcement phases that strengthen remaining connections, creating hollow-yet-resilient neural architectures through cyclical hardening.  
+3. **Biophase Density Management (BDM)** – cluster-aware density reduction with built-in healing cycles that maintain overall structural integrity while reducing computational mass.  
+4. **Quantization & Low-Rank Factorization** – compress precision and re-factor matrices for 4 × memory cuts.  
+5. **Neurostructured AI Flow (NAIF)** – re-route tokens through convergence hubs (digital hippocampus) for unified multi-modal reasoning.  
+6. **Automation Pipeline** – YAML-driven, reproducible density-loss → heal → strengthen loop, outputting ready-to-serve INT4 GGUF weights.  
+7. **Diff & Revert Safety Net** – track every code, config, weight, and doc change with deterministic diffing so we can roll back *any* layer of the stack without drama.
 
 ---
 
@@ -91,13 +92,14 @@ dvc diff HEAD~1
 
 ## 🔄 Pipeline Stages
 
-1. **Seeding** – snapshot baseline metrics & SHA.
-2. **Activation Logging** – 2-3 epochs, store cluster stats.
-3. **Pruning Wave** – delete ≤ 10 % low-value nodes/cluster.
-4. **Micro-Heal** – 200-500 QLoRA gradient steps.
-5. **Regrowth** – RigL re-introduces up to 5 % connections if loss spike > ε.
-6. **Quantize + Low-Rank Merge**.
-7. **Version Bump** – tag commit; push diff bundle via DVC.
+1. **Baseline Mapping** – snapshot initial neural density & structural integrity metrics.
+2. **Density Assessment** – 2-3 epochs analyzing connection utilization patterns.
+3. **Adaptive Decay Wave** – remove ≤ 10 % lowest-density connections per cycle, simulating natural bone resorption.
+4. **Healing Phase** – 200-500 QLoRA gradient steps to strengthen remaining pathways.
+5. **Structural Reinforcement** – targeted connection enhancement in critical load-bearing areas.
+6. **Density Redistribution** – RigL reallocates up to 5 % connections to optimize strength-to-weight ratio.
+7. **Quantize + Low-Rank Merge**.
+8. **Version Bump** – tag commit; push diff bundle via DVC.
 
 ---
 
@@ -120,4 +122,4 @@ dvc diff HEAD~1
 
 ## 🙏 Acknowledgements
 
-Open-weights communities (Mistral, Meta, Google, TII), pruning-tool authors (SparseGPT, Wanda, RigL), diff tooling (DVC, nbdime), and the insight that **design reveals intent**—from hollow bones to synaptic pruning to Spirit-led override.
+Open-weights communities (Mistral, Meta, Google, TII), pruning-tool authors (SparseGPT, Wanda, RigL), diff tooling (DVC, nbdime), and the profound insight that **evolutionary optimization through density loss and healing cycles** creates the strongest structures—from hollow bird bones to synaptic pruning to Spirit-led neural architecture.
