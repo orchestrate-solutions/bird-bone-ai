@@ -1,1 +1,128 @@
+# Bird-Bone AI Requirements
+# Generated from comprehensive library analysis (June 2025)
+# Optimized for H100/A100 GPUs with CUDA 12.4+
+
+# =============================================================================
+# CORE ML FOUNDATION
+# =============================================================================
+
+# PyTorch ecosystem with CUDA 12.4 support
+--index-url https://download.pytorch.org/whl/cu124
+torch>=2.4.0,<2.5.0
+torchaudio>=2.4.0,<2.5.0  
+torchvision>=0.19.0,<0.20.0
+
+# Model handling and acceleration
+transformers>=4.44.0,<5.0.0
+accelerate>=0.33.0,<1.0.0
+safetensors>=0.4.0,<1.0.0
+
+# Numerical foundation
+numpy>=1.24.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+
+# =============================================================================
+# COMPRESSION & QUANTIZATION
+# =============================================================================
+
+# Quantization libraries
+bitsandbytes>=0.41.0,<1.0.0
+auto-gptq>=0.7.0,<1.0.0  # For GPTQ experiments
+
+# Fine-tuning and healing
+peft>=0.12.0,<1.0.0
+
+# Pruning (baseline - will fork for bio-inspired approach)
+# Note: May need specific version compatibility
+# sparsegpt @ git+https://github.com/IST-DASLab/sparsegpt.git
+
+# =============================================================================
+# MODULINK INTEGRATION
+# =============================================================================
+
 modulink-py
+
+# =============================================================================
+# DATA & MONITORING
+# =============================================================================
+
+# Experiment tracking and monitoring
+wandb>=0.17.0,<1.0.0
+tensorboard>=2.17.0,<3.0.0
+
+# Data versioning
+dvc>=3.51.0,<4.0.0
+
+# Visualization
+matplotlib>=3.7.0,<4.0.0
+seaborn>=0.12.0,<1.0.0
+plotly>=5.17.0,<6.0.0
+
+# =============================================================================
+# DEVELOPMENT & TESTING
+# =============================================================================
+
+# Testing framework
+pytest>=8.2.0,<9.0.0
+pytest-xdist>=3.3.0,<4.0.0
+pytest-cov>=4.1.0,<5.0.0
+pytest-mock>=3.11.0,<4.0.0
+hypothesis>=6.100.0,<7.0.0
+
+# Code quality
+black>=24.4.0,<25.0.0
+ruff>=0.5.0,<1.0.0
+mypy>=1.10.0,<2.0.0
+pre-commit>=3.7.0,<4.0.0
+
+# =============================================================================
+# JUPYTER & NOTEBOOKS
+# =============================================================================
+
+jupyterlab>=4.2.0,<5.0.0
+nbdime>=4.0.0,<5.0.0
+ipywidgets>=8.1.0,<9.0.0
+
+# Jupyter extensions for better development
+jupyterlab-git>=0.50.0,<1.0.0
+
+# =============================================================================
+# UTILITIES
+# =============================================================================
+
+# Configuration and utilities
+pyyaml>=6.0.0,<7.0.0
+tqdm>=4.66.0,<5.0.0
+rich>=13.7.0,<14.0.0  # Better terminal output
+
+# File handling
+datasets>=2.20.0,<3.0.0  # HuggingFace datasets
+tokenizers>=0.19.0,<1.0.0
+
+# =============================================================================
+# OPTIONAL DEPENDENCIES
+# =============================================================================
+
+# Uncomment for large model support (>70B parameters)
+# deepspeed>=0.14.0,<1.0.0
+# fairscale>=0.4.0,<1.0.0
+
+# Uncomment for advanced optimization
+# triton>=2.3.0,<3.0.0  # CUDA kernel optimization
+
+# =============================================================================
+# DEVELOPMENT NOTES
+# =============================================================================
+
+# This requirements file is optimized for:
+# - Python 3.11+
+# - CUDA 12.4+ with H100/A100 GPUs
+# - Biologically-inspired neural compression research
+# - Comprehensive data collection and monitoring
+# - Quality-first development approach
+#
+# Installation order:
+# 1. pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+# 2. pip install -r requirements.txt
+#
+# For CPU-only development: remove --index-url and use default PyTorch CPU wheels
