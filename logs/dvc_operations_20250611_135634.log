@@ -1,0 +1,245 @@
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: dvc_initialization
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "dvc_initialization",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": []
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🏁 AFTER: validate_prerequisites
+2025-06-11 13:56:34 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "validate_prerequisites",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai"
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: validate_prerequisites
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "validate_prerequisites",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai"
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🏁 AFTER: initialize_dvc_subdirectory
+2025-06-11 13:56:34 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "initialize_dvc_subdirectory",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized"
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: initialize_dvc_subdirectory
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "initialize_dvc_subdirectory",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized"
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🏁 AFTER: configure_dvc_cache
+2025-06-11 13:56:34 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "configure_dvc_cache",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: configure_dvc_cache
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "configure_dvc_cache",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🏁 AFTER: setup_dvcignore
+2025-06-11 13:56:34 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "setup_dvcignore",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true,
+  "dvcignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvcignore",
+  "dvcignore_created": true
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: setup_dvcignore
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "setup_dvcignore",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true,
+  "dvcignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvcignore",
+  "dvcignore_created": true
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🏁 AFTER: create_sample_pipeline
+2025-06-11 13:56:34 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "create_sample_pipeline",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true,
+  "dvcignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvcignore",
+  "dvcignore_created": true,
+  "dvc_yaml_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/dvc.yaml",
+  "pipeline_created": true,
+  "sample_pipeline": "[dict with 2 keys]",
+  "gitignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.gitignore"
+}
+2025-06-11 13:56:34 - dvc_operations - INFO - 🎯 BEFORE: create_sample_pipeline
+2025-06-11 13:56:34 - dvc_operations - INFO - 📥 Input Context:
+{
+  "operation": "create_sample_pipeline",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true,
+  "dvcignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvcignore",
+  "dvcignore_created": true,
+  "dvc_yaml_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/dvc.yaml",
+  "pipeline_created": true,
+  "sample_pipeline": "[dict with 2 keys]",
+  "gitignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.gitignore"
+}
+2025-06-11 13:56:35 - dvc_operations - INFO - 🏁 AFTER: test_dvc_operations
+2025-06-11 13:56:35 - dvc_operations - INFO - 📤 Output Context:
+{
+  "operation": "test_dvc_operations",
+  "started_at": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "errors": [],
+  "dvc_version": "3.60.0",
+  "dvc_available": true,
+  "git_available": true,
+  "models_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models",
+  "models_exists": true,
+  "project_root": "/Users/joshuawink/Documents/github/bird-bone-ai",
+  "dvc_initialized": true,
+  "dvc_dir": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc",
+  "dvc_config_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvc/config",
+  "dvc_init_output": "DVC already initialized",
+  "cache_config": {
+    "type": "reflink,copy",
+    "protected": true
+  },
+  "cache_configured": true,
+  "dvcignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.dvcignore",
+  "dvcignore_created": true,
+  "dvc_yaml_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/dvc.yaml",
+  "pipeline_created": true,
+  "sample_pipeline": "[dict with 2 keys]",
+  "gitignore_path": "/Users/joshuawink/Documents/github/bird-bone-ai/models/.gitignore",
+  "test_results": "[4 items]",
+  "all_tests_passed": true
+}

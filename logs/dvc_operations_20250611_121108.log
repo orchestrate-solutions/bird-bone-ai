@@ -1,0 +1,24 @@
+2025-06-11 12:11:08 - dvc_operations - INFO - 🎯 BEFORE: dvc_initialization
+2025-06-11 12:11:08 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors']
+2025-06-11 12:11:08 - dvc_operations - INFO - 🏁 AFTER: validate_prerequisites
+2025-06-11 12:11:08 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root']
+2025-06-11 12:11:08 - dvc_operations - INFO - 🎯 BEFORE: validate_prerequisites
+2025-06-11 12:11:08 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root']
+2025-06-11 12:11:08 - dvc_operations - INFO - 🏁 AFTER: initialize_dvc_subdirectory
+2025-06-11 12:11:08 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output']
+2025-06-11 12:11:08 - dvc_operations - INFO - 🎯 BEFORE: initialize_dvc_subdirectory
+2025-06-11 12:11:08 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🏁 AFTER: configure_dvc_cache
+2025-06-11 12:11:09 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🎯 BEFORE: configure_dvc_cache
+2025-06-11 12:11:09 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🏁 AFTER: setup_dvcignore
+2025-06-11 12:11:09 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured', 'dvcignore_path', 'dvcignore_created']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🎯 BEFORE: setup_dvcignore
+2025-06-11 12:11:09 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured', 'dvcignore_path', 'dvcignore_created']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🏁 AFTER: create_sample_pipeline
+2025-06-11 12:11:09 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured', 'dvcignore_path', 'dvcignore_created', 'dvc_yaml_path', 'pipeline_created', 'sample_pipeline', 'gitignore_path']
+2025-06-11 12:11:09 - dvc_operations - INFO - 🎯 BEFORE: create_sample_pipeline
+2025-06-11 12:11:09 - dvc_operations - INFO - 📥 Input Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured', 'dvcignore_path', 'dvcignore_created', 'dvc_yaml_path', 'pipeline_created', 'sample_pipeline', 'gitignore_path']
+2025-06-11 12:11:10 - dvc_operations - INFO - 🏁 AFTER: test_dvc_operations
+2025-06-11 12:11:10 - dvc_operations - INFO - 📤 Output Context Keys: ['operation', 'started_at', 'errors', 'dvc_version', 'dvc_available', 'git_available', 'models_dir', 'models_exists', 'project_root', 'dvc_initialized', 'dvc_dir', 'dvc_config_path', 'dvc_init_output', 'cache_config', 'cache_configured', 'dvcignore_path', 'dvcignore_created', 'dvc_yaml_path', 'pipeline_created', 'sample_pipeline', 'gitignore_path', 'test_results', 'all_tests_passed']
