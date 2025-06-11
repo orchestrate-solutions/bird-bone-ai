@@ -1,0 +1,153 @@
+# Git LFS Configuration for Bird-Bone AI Project
+# Issue #3: Configure Git LFS for Large Binary Files
+#
+# This file configures Git Large File Storage (LFS) to handle large binary files
+# efficiently without bloating the main repository. Files matching these patterns
+# will be stored in LFS instead of regular Git storage.
+
+# ==============================================================================
+# MODEL FILES - Neural Network Models and Weights
+# ==============================================================================
+
+# PyTorch model files
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+
+# SafeTensors format (PREFERRED - Issue #2 Research Decision)
+# Selected over pickle for security, speed, and memory efficiency
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+
+# GGUF format (GPT-Generated Unified Format)
+*.gguf filter=lfs diff=lfs merge=lfs -text
+
+# Generic binary model files
+*.bin filter=lfs diff=lfs merge=lfs -text
+
+# ONNX model files
+*.onnx filter=lfs diff=lfs merge=lfs -text
+
+# TensorFlow SavedModel files
+*.pb filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# DATA FILES - Training Data and Datasets
+# ==============================================================================
+
+# NOTE: Pickle files are NOT tracked by LFS per Issue #2 research decisions
+# SafeTensors is preferred for security (no arbitrary code execution)
+# and performance (faster loading, zero-copy deserialization)
+# If legacy pickle files are encountered, they should be converted to SafeTensors
+
+# NumPy compressed arrays
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+
+# HDF5 files (hierarchical data format)
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.hdf5 filter=lfs diff=lfs merge=lfs -text
+
+# Parquet files (columnar storage)
+*.parquet filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# COMPRESSED ARCHIVES - Large Archive Files
+# ==============================================================================
+
+# Compressed tar archives
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.tgz filter=lfs diff=lfs merge=lfs -text
+*.tar.bz2 filter=lfs diff=lfs merge=lfs -text
+*.tar.xz filter=lfs diff=lfs merge=lfs -text
+
+# ZIP archives
+*.zip filter=lfs diff=lfs merge=lfs -text
+
+# 7-Zip archives
+*.7z filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# CHECKPOINT AND EXPERIMENT FILES - Model Checkpoints and Training Artifacts
+# ==============================================================================
+
+# Model checkpoints
+*.ckpt filter=lfs diff=lfs merge=lfs -text
+*.checkpoint filter=lfs diff=lfs merge=lfs -text
+
+# Weights and biases files
+*.wandb filter=lfs diff=lfs merge=lfs -text
+
+# TensorBoard logs (large ones)
+events.out.tfevents.* filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# MEDIA FILES - Large Media Assets
+# ==============================================================================
+
+# Images (large datasets)
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+
+# Audio files
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+
+# Video files
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# DOCUMENTATION - Large Documentation Assets
+# ==============================================================================
+
+# PDF files (research papers, documentation)
+*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# SIZE-BASED RULES - Additional Large File Patterns
+# ==============================================================================
+
+# Any file larger than 100MB should be in LFS
+# (This is enforced by Git LFS configuration, not .gitattributes)
+
+# ==============================================================================
+# EXCLUSIONS - Files NOT to track with LFS
+# ==============================================================================
+
+# The models/ directory will be handled by DVC (Issue #4)
+# So we exclude models/ from general LFS tracking to avoid conflicts
+# DVC will provide more sophisticated model versioning
+
+# Note: If specific files in models/ need LFS, they can be tracked individually
+# but generally DVC will handle the models/ directory structure
+
+# ==============================================================================
+# BIRD-BONE AI SPECIFIC PATTERNS
+# ==============================================================================
+
+# Compressed model snapshots from density loss cycles
+*_compressed.* filter=lfs diff=lfs merge=lfs -text
+*_density_loss.* filter=lfs diff=lfs merge=lfs -text
+*_healing_checkpoint.* filter=lfs diff=lfs merge=lfs -text
+
+# Biophase adaptive pruning artifacts
+*_bap_snapshot.* filter=lfs diff=lfs merge=lfs -text
+*_pruning_mask.* filter=lfs diff=lfs merge=lfs -text
+
+# Quantization artifacts
+*_quantized.* filter=lfs diff=lfs merge=lfs -text
+*_int8.* filter=lfs diff=lfs merge=lfs -text
+*_int4.* filter=lfs diff=lfs merge=lfs -text
+
+# Low-rank factorization results
+*_factorized.* filter=lfs diff=lfs merge=lfs -text
+*_lora.* filter=lfs diff=lfs merge=lfs -text
+*_qlora.* filter=lfs diff=lfs merge=lfs -text
+
+# ==============================================================================
+# END OF LFS CONFIGURATION
+# ==============================================================================
