@@ -271,7 +271,8 @@ class TestLFSIntegration:
         for line in models_specific_lines:
             if 'filter=lfs' in line:
                 # This might be intentional, just warn
-                print(f"Warning: LFS pattern for models directory: {line}")
+                with pytest.warns(UserWarning, match="LFS pattern for models directory"):
+                    warnings.warn(f"LFS pattern for models directory: {line}", UserWarning)
 
 
 class TestModulinkIntegration:
