@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  bird-bone-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bird-bone-ai-app
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=development
+    ports:
+      - "8000:8000"
+    networks:
+      - bird-bone-ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a database service if needed
+  # postgres:
+  #   image: postgres:13
+  #   container_name: bird-bone-ai-db
+  #   environment:
+  #     POSTGRES_DB: bird_bone_ai
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - bird-bone-ai-network
+
+  # Optional: Add Redis for caching if needed
+  # redis:
+  #   image: redis:6-alpine
+  #   container_name: bird-bone-ai-redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - bird-bone-ai-network
+
+networks:
+  bird-bone-ai-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
