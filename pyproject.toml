@@ -46,13 +46,11 @@ dev = [
     "pre-commit>=3.7.0,<4.0.0",
     "safety>=3.2.0,<4.0.0",
     "bandit>=1.7.0,<2.0.0",
-    "flake8>=7.0.0,<8.0.0",
     "coverage>=7.5.0,<8.0.0",
 ]
 ci = [
     "safety>=3.2.0,<4.0.0",
     "bandit>=1.7.0,<2.0.0",
-    "flake8>=7.0.0,<8.0.0",
     "coverage>=7.5.0,<8.0.0",
     "GitPython>=3.1.43,<4.0.0",
     "psutil>=5.9.0,<6.0.0",
@@ -104,6 +102,8 @@ extend-exclude = '''
 [tool.ruff]
 line-length = 88
 target-version = "py311"
+
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
@@ -115,17 +115,16 @@ select = [
 ]
 ignore = [
     "E501",  # line too long, handled by black
+    "E402",  # module level import not at top of file (needed for sys.path modifications)
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
 ]
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
-max-complexity = 10
-
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
+"scripts/ci/*.py" = ["E402"]  # Allow imports after sys.path modifications in CI scripts
+"scripts/dvc_chain.py" = ["E402"]  # Allow imports after sys.path modifications
+"scripts/setup_dvc.py" = ["E402"]  # Allow imports after sys.path modifications
 
 [tool.mypy]
 python_version = "3.11"
@@ -189,4 +188,6 @@ exclude_lines = [
 exclude_dirs = ["tests", "scripts/*/test_*"]
 skips = ["B101", "B601"]
 
-[t
+[tool.safety]
+# Safety configuration for vulnerability scanning
+continue-on-error = false
