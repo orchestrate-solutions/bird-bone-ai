@@ -3,8 +3,7 @@
 # =============================================================================
 # Git Push Script with Enforced Code Quality Checks
 # =============================================================================
-# This script mimics npm's pre-commit behavior for git push operations
-# Runs isort, black, and flake8 before allowing any push to remote
+# This script runs black for formatting and ruff for linting before pushing
 # =============================================================================
 
 set -e  # Exit on any error
@@ -50,9 +49,8 @@ ${YELLOW}EXAMPLES:${NC}
     ./scripts/git-push.sh --set-upstream origin new-feature  # Push and set upstream
 
 ${YELLOW}CODE QUALITY CHECKS:${NC}
-    1. ${GREEN}isort${NC}   - Import sorting (auto-fix enabled)
-    2. ${GREEN}black${NC}   - Code formatting (auto-fix enabled)  
-    3. ${GREEN}flake8${NC}  - Critical linting (E9,F63,F7,F82) - blocking
+    1. ${GREEN}black${NC}  - Code formatting (auto-fix enabled)
+    2. ${GREEN}ruff${NC}   - Linting and import sorting (blocking on errors)
 
 ${PURPLE}💡 This script ensures your code meets quality standards before pushing!${NC}
 EOF
@@ -139,7 +137,7 @@ fi
 if [ "$SKIP_CHECKS" = false ]; then
     echo -e "\n${PURPLE}🔍 Running mandatory code quality checks...${NC}"
     echo "=================================================="
-    
+
     # Function to print status
     print_status() {
         if [ $1 -eq 0 ]; then
@@ -149,30 +147,11 @@ if [ "$SKIP_CHECKS" = false ]; then
             return 1
         fi
     }
-    
+
     # =============================================================================
-    # 1. Import Sorting with isort
+    # 1. Code Formatting with black
     # =============================================================================
-    echo -e "\n${BLUE}1/3 Import Sorting Check (isort)${NC}"
-    if ! isort --check-only --diff . >/dev/null 2>&1; then
-        echo -e "${YELLOW}🔧 Auto-fixing import sorting...${NC}"
-        if isort .; then
-            echo -e "${GREEN}✅ Import sorting fixed automatically${NC}"
-            # Stage the changes
-            git add -A
-            echo -e "${BLUE}📝 Staged import sorting fixes${NC}"
-        else
-            echo -e "${RED}❌ Failed to auto-fix import sorting${NC}"
-            exit 1
-        fi
-    else
-        print_status 0 "Import sorting (isort)"
-    fi
-    
-    # =============================================================================
-    # 2. Code Formatting with black
-    # =============================================================================
-    echo -e "\n${BLUE}2/3 Code Formatting Check (black)${NC}"
+    echo -e "\n${BLUE}1/2 Code Formatting Check (black)${NC}"
     if ! black --check --diff . >/dev/null 2>&1; then
         echo -e "${YELLOW}🔧 Auto-fixing code formatting...${NC}"
         if black .; then
@@ -187,42 +166,37 @@ if [ "$SKIP_CHECKS" = false ]; then
     else
         print_status 0 "Code formatting (black)"
     fi
-    
+
     # =============================================================================
-    # 3. Critical Linting with flake8
+    # 2. Linting and Import Sorting with ruff
     # =============================================================================
-    echo -e "\n${BLUE}3/3 Critical Linting Check (flake8)${NC}"
-    if ! flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics >/dev/null 2>&1; then
-        echo -e "${RED}❌ Critical linting errors found. These must be fixed manually:${NC}"
-        echo -e "${RED}   - E9: Syntax errors${NC}"
-        echo -e "${RED}   - F63: Invalid syntax in type annotations${NC}"
-        echo -e "${RED}   - F7: Logic errors${NC}"
-        echo -e "${RED}   - F82: Undefined names${NC}"
-        echo -e "\n${YELLOW}💡 Run 'flake8 . --select=E9,F63,F7,F82' to see details${NC}"
-        echo -e "${RED}🚫 Push aborted due to critical linting errors${NC}"
+    echo -e "\n${BLUE}2/2 Linting Check (ruff)${NC}"
+    if ! ruff check . >/dev/null 2>&1; then
+        echo -e "${RED}❌ Linting errors found. These must be fixed manually:${NC}"
+        echo -e "\n${YELLOW}💡 Run 'ruff check .' to see details${NC}"
+        echo -e "${RED}🚫 Push aborted due to linting errors${NC}"
         exit 1
     else
-        print_status 0 "Critical linting (flake8)"
+        print_status 0 "Linting (ruff)"
     fi
-    
+
     echo -e "\n=================================================="
     echo -e "${GREEN}🎉 All code quality checks passed!${NC}"
-    
+
     # Check if there were any auto-fixes
     if ! git diff --quiet; then
         echo -e "\n${YELLOW}📝 Auto-fixes were applied:${NC}"
         git diff --name-only | sed 's/^/  - /'
         echo -e "\n${BLUE}💡 These changes are ready to be committed${NC}"
         echo -e "${YELLOW}⚠️  Consider committing these fixes before pushing${NC}"
-        
+
         # Ask user if they want to commit the fixes
         echo -e "\n${BLUE}❓ Do you want to commit these auto-fixes? (y/N)${NC}"
         read -r response
         if [[ "$response" =~ ^[Yy]$ ]]; then
             git add -A
-            git commit -m "style: auto-fix code formatting and imports
+            git commit -m "style: auto-fix code formatting
 
-- Apply isort import sorting
 - Apply black code formatting
 - Automated by git-push script"
             echo -e "${GREEN}✅ Auto-fixes committed${NC}"
@@ -249,16 +223,16 @@ echo ""
 # Execute the push
 if eval "$PUSH_CMD"; then
     echo -e "\n${GREEN}🎉 Successfully pushed to $REMOTE/$BRANCH!${NC}"
-    
+
     # Show the commit that was pushed
     COMMIT_HASH=$(git rev-parse HEAD)
     COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s" HEAD)
     echo -e "${BLUE}📝 Pushed commit:${NC} ${COMMIT_HASH:0:8} - $COMMIT_MESSAGE"
-    
+
     # Show remote URL
     REMOTE_URL=$(git remote get-url "$REMOTE" 2>/dev/null || echo "unknown")
     echo -e "${BLUE}🌐 Remote URL:${NC} $REMOTE_URL"
-    
+
 else
     echo -e "\n${RED}❌ Push failed!${NC}"
     echo -e "${YELLOW}💡 Common issues:${NC}"
