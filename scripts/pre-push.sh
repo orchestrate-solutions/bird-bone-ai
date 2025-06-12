@@ -73,9 +73,40 @@ fi
 echo -e "${BLUE}📁 Working directory: $PROJECT_ROOT${NC}"
 
 # =============================================================================
-# 1. Import Sorting with isort (SKIPPED)
+# 1. Python Version Check
 # =============================================================================
-echo -e "\n${BLUE}1/4 Import Sorting Check${NC}"
+echo -e "\n${BLUE}1/5 Python Version Check${NC}"
+# Attempt to get Python version using python3
+CURRENT_PYTHON_VERSION=""
+PYTHON_CMD_FOUND=false
+if command -v python3 &> /dev/null; then
+    CURRENT_PYTHON_VERSION=$(python3 --version 2>&1)
+    PYTHON_CMD_FOUND=true
+elif command -v python &> /dev/null; then
+    # Fallback to python if python3 is not found
+    CURRENT_PYTHON_VERSION=$(python --version 2>&1)
+    PYTHON_CMD_FOUND=true
+fi
+
+if ! $PYTHON_CMD_FOUND; then
+    echo -e "${RED}❌ Python command (python3 or python) not found.${NC}"
+    echo -e "${YELLOW}⚠️  Cannot check Python version. Please ensure Python is installed and in your PATH.${NC}"
+    # Consider if this should be a fatal error: exit 1
+elif [[ "$CURRENT_PYTHON_VERSION" == *"Python 3.11"* ]]; then
+    echo -e "${GREEN}✅ Python version is compatible: $CURRENT_PYTHON_VERSION${NC}"
+else
+    echo -e "${YELLOW}⚠️  Recommended Python version is 3.11.x. You are using: $CURRENT_PYTHON_VERSION${NC}"
+    echo -e "${YELLOW}   This might lead to inconsistencies with the CI/CD environment.${NC}"
+    # If python command failed to get version (e.g. returned non-zero exit code but was found)
+    if [[ $? -ne 0 && "$CURRENT_PYTHON_VERSION" != *"Python"* ]]; then
+         echo -e "${RED}❌ Failed to determine Python version. Output: $CURRENT_PYTHON_VERSION${NC}"
+    fi
+fi
+
+# =============================================================================
+# 2. Import Sorting with isort (SKIPPED)
+# =============================================================================
+echo -e "\n${BLUE}2/5 Import Sorting Check${NC}"
 echo -e "${YELLOW}⚠️  Import sorting check skipped: isort is no longer used in this project${NC}"
 # SKIP isort: isort is no longer used in this project
 # if ! run_check "isort" "isort --check-only --diff ."; then
@@ -92,9 +123,9 @@ echo -e "${YELLOW}⚠️  Import sorting check skipped: isort is no longer used 
 # fi
 
 # =============================================================================
-# 2. Code Formatting with black
+# 3. Code Formatting with black
 # =============================================================================
-echo -e "\n${BLUE}2/4 Code Formatting Check${NC}"
+echo -e "\n${BLUE}3/5 Code Formatting Check${NC}"
 if ! run_check "black" "black --check --diff ."; then
     echo -e "${YELLOW}🔧 Auto-fixing code formatting...${NC}"
     if black .; then
@@ -109,9 +140,9 @@ if ! run_check "black" "black --check --diff ."; then
 fi
 
 # =============================================================================
-# 3. Linting with Ruff (Critical Errors Only)
+# 4. Linting with Ruff (Critical Errors Only)
 # =============================================================================
-echo -e "\\n${BLUE}3/4 Critical Linting Check${NC}"
+echo -e "\\n${BLUE}4/5 Critical Linting Check${NC}"
 if ! run_check "Ruff (critical)" "ruff check . --select E9,F63,F7,F82 --output-format concise"; then
     echo -e "${RED}❌ Critical linting errors found. These must be fixed manually:${NC}"
     echo -e "${RED}   - E9: Syntax errors${NC}"
@@ -123,9 +154,9 @@ if ! run_check "Ruff (critical)" "ruff check . --select E9,F63,F7,F82 --output-f
 fi
 
 # =============================================================================
-# 4. Full Linting Report with Ruff (Non-blocking)
+# 5. Full Linting Report with Ruff (Non-blocking)
 # =============================================================================
-echo -e "\\n${BLUE}4/4 Full Linting Report${NC}"
+echo -e "\\n${BLUE}5/5 Full Linting Report${NC}"
 echo -e "${YELLOW}📊 Running full linting check with Ruff (warnings only)...${NC}"
 if ruff check . --output-format concise; then
     echo -e "${GREEN}✅ Full linting check completed${NC}"
@@ -134,9 +165,9 @@ else
 fi
 
 # =============================================================================
-# 5. Optional: Run tests (uncomment to enable)
+# Optional: Run tests (uncomment to enable)
 # =============================================================================
-# echo -e "\n${BLUE}5/5 Quick Test Check${NC}"
+# echo -e "\n${BLUE}Optional: Quick Test Check${NC}"
 # if command -v pytest &> /dev/null; then
 #     if ! run_check "pytest" "pytest tests/ -v --tb=short"; then
 #         echo -e "${RED}❌ Tests failed. Push aborted.${NC}"
