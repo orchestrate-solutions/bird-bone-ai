@@ -17,7 +17,6 @@ Test Categories:
 import subprocess
 import warnings
 from pathlib import Path
-from typing import List
 
 import pytest
 
@@ -51,7 +50,7 @@ TEST_ARCHIVE_EXTENSIONS = CRITICAL_ARCHIVE_EXTENSIONS
 MINIMUM_STORAGE_REQUIREMENT = 1024 * 1024 * 100  # 100MB
 
 
-def extract_all_lfs_patterns_from_gitattributes() -> List[str]:
+def extract_all_lfs_patterns_from_gitattributes() -> list[str]:
     """Extract all LFS patterns from .gitattributes file dynamically"""
     gitattributes_path = Path(".gitattributes")
     if not gitattributes_path.exists():

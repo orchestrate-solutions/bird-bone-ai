@@ -109,25 +109,25 @@ if ! run_check "black" "black --check --diff ."; then
 fi
 
 # =============================================================================
-# 3. Linting with flake8 (Critical Errors Only)
+# 3. Linting with Ruff (Critical Errors Only)
 # =============================================================================
-echo -e "\n${BLUE}3/4 Critical Linting Check${NC}"
-if ! run_check "flake8 (critical)" "flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics"; then
+echo -e "\\n${BLUE}3/4 Critical Linting Check${NC}"
+if ! run_check "Ruff (critical)" "ruff check . --select E9,F63,F7,F82 --output-format concise"; then
     echo -e "${RED}❌ Critical linting errors found. These must be fixed manually:${NC}"
     echo -e "${RED}   - E9: Syntax errors${NC}"
     echo -e "${RED}   - F63: Invalid syntax in type annotations${NC}"
     echo -e "${RED}   - F7: Logic errors${NC}"
     echo -e "${RED}   - F82: Undefined names${NC}"
-    echo -e "\n${YELLOW}💡 Run 'flake8 . --select=E9,F63,F7,F82' to see details${NC}"
+    echo -e "\\n${YELLOW}💡 Run 'ruff check . --select E9,F63,F7,F82' to see details${NC}"
     exit 1
 fi
 
 # =============================================================================
-# 4. Full Linting Report (Non-blocking)
+# 4. Full Linting Report with Ruff (Non-blocking)
 # =============================================================================
-echo -e "\n${BLUE}4/4 Full Linting Report${NC}"
-echo -e "${YELLOW}📊 Running full linting check (warnings only)...${NC}"
-if flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics; then
+echo -e "\\n${BLUE}4/4 Full Linting Report${NC}"
+echo -e "${YELLOW}📊 Running full linting check with Ruff (warnings only)...${NC}"
+if ruff check . --output-format concise; then
     echo -e "${GREEN}✅ Full linting check completed${NC}"
 else
     echo -e "${YELLOW}⚠️  Style warnings found (non-blocking)${NC}"

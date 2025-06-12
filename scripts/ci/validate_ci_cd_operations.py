@@ -19,7 +19,7 @@ import time
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 # Add the scripts directory to Python path for imports
 scripts_dir = Path(__file__).parent
@@ -69,7 +69,7 @@ class ValidationResult:
 class CICDValidator:
     """Comprehensive CI/CD pipeline validator."""
 
-    def __init__(self, project_root: Union[Path, None] = None):
+    def __init__(self, project_root: Path | None = None):
         """Initialize the validator."""
         self.project_root = project_root or Path.cwd()
         self.results: list[ValidationResult] = []
