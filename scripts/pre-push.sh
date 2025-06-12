@@ -38,9 +38,9 @@ run_check() {
     local check_name="$1"
     local command="$2"
     local auto_fix="$3"
-    
+
     echo -e "\n${YELLOW}🔧 Running $check_name...${NC}"
-    
+
     if eval "$command"; then
         print_status 0 "$check_name"
         return 0
@@ -73,9 +73,10 @@ fi
 echo -e "${BLUE}📁 Working directory: $PROJECT_ROOT${NC}"
 
 # =============================================================================
-# 1. Import Sorting with isort
+# 1. Import Sorting with isort (SKIPPED)
 # =============================================================================
 echo -e "\n${BLUE}1/4 Import Sorting Check${NC}"
+echo -e "${YELLOW}⚠️  Import sorting check skipped: isort is no longer used in this project${NC}"
 # SKIP isort: isort is no longer used in this project
 # if ! run_check "isort" "isort --check-only --diff ."; then
 #     echo -e "${YELLOW}🔧 Auto-fixing import sorting...${NC}"
