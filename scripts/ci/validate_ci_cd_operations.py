@@ -483,9 +483,9 @@ class CICDValidator:
 
         for sh_file in sh_files:
             try:
-                with open(sh_file, "r", encoding="utf-8") as f: # Added encoding
+                with open(sh_file, "r", encoding="utf-8") as f:  # Added encoding
                     for line_num, line in enumerate(f, 1):
-                        if "ruff --show-source" in line:
+                        if "ruff --show-files" in line:
                             self.add_result(
                                 "shell_scripts",
                                 f"deprecated_ruff_arg_in_{sh_file.name.replace('.', '_')}",
@@ -509,7 +509,7 @@ class CICDValidator:
                 "shell_scripts",
                 "deprecated_ruff_arg_check",
                 ValidationStatus.PASSED,
-                "All found .sh files checked; no deprecated 'ruff --show-source' arguments found.",
+                "All found .sh files checked; no deprecated 'ruff --show-files' arguments found.",
             )
         # If deprecated_arg_found_in_any_script is True, specific warnings have already been added.
         # If any_read_errors is True, specific failures have already been added.

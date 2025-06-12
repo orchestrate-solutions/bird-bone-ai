@@ -66,7 +66,7 @@ jobs:
       if: steps.quality-check.outputs.lint_errors == 'true'
       run: |
         echo "❌ Linting errors found:"
-        ruff check . --show-source
+        ruff check . --show-files
         echo ""
         echo "🚫 These errors must be fixed manually"
         echo "💡 Run 'ruff check .' locally to see all issues"
