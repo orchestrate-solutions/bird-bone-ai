@@ -76,18 +76,19 @@ echo -e "${BLUE}📁 Working directory: $PROJECT_ROOT${NC}"
 # 1. Import Sorting with isort
 # =============================================================================
 echo -e "\n${BLUE}1/4 Import Sorting Check${NC}"
-if ! run_check "isort" "isort --check-only --diff ."; then
-    echo -e "${YELLOW}🔧 Auto-fixing import sorting...${NC}"
-    if isort .; then
-        echo -e "${GREEN}✅ Import sorting fixed automatically${NC}"
-        # Stage the changes
-        git add -A
-        echo -e "${BLUE}📝 Staged import sorting fixes${NC}"
-    else
-        echo -e "${RED}❌ Failed to auto-fix import sorting${NC}"
-        exit 1
-    fi
-fi
+# SKIP isort: isort is no longer used in this project
+# if ! run_check "isort" "isort --check-only --diff ."; then
+#     echo -e "${YELLOW}🔧 Auto-fixing import sorting...${NC}"
+#     if isort .; then
+#         echo -e "${GREEN}✅ Import sorting fixed automatically${NC}"
+#         # Stage the changes
+#         git add -A
+#         echo -e "${BLUE}📝 Staged import sorting fixes${NC}"
+#     else
+#         echo -e "${RED}❌ Failed to auto-fix import sorting${NC}"
+#         exit 1
+#     fi
+# fi
 
 # =============================================================================
 # 2. Code Formatting with black
