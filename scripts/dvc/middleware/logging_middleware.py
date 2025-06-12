@@ -31,7 +31,8 @@ Example Usage:
 
 import logging
 import time
-from modulink import Middleware, Ctx
+
+from modulink import Ctx, Middleware
 
 # Configure logger for DVC operations
 logger = logging.getLogger("dvc_operations")

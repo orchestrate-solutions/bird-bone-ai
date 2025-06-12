@@ -44,8 +44,9 @@ Example Context Flow:
     }
 """
 
-import yaml
 from pathlib import Path
+
+import yaml
 from modulink import Ctx
 
 

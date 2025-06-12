@@ -10,21 +10,17 @@ Comprehensive validation of CI/CD pipeline operations including:
 - Deployment readiness assessment
 """
 
+import json
 import logging
 import os
-import sys
 import subprocess
-import json
-from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
-from dataclasses import dataclass, field
-from enum import Enum
-import time
-
 # Import our CI/CD modules
 import sys
-import os
+import time
+from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
 # Add the scripts directory to Python path for imports
 scripts_dir = Path(__file__).parent
@@ -34,12 +30,8 @@ if str(scripts_dir) not in sys.path:
 import configure_security_settings
 import setup_environment_validation
 import setup_testing_pipeline
-from middleware import (
-    security_middleware,
-    validation_middleware,
-    testing_middleware,
-    deployment_middleware,
-)
+from middleware import (deployment_middleware, security_middleware,
+                        testing_middleware, validation_middleware)
 
 Ctx = Dict[str, Any]
 

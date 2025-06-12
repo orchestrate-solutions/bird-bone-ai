@@ -31,6 +31,7 @@ Example Usage:
 
 import logging
 import time
+
 from . import Ctx, Middleware  # Adjusted import for CI context
 
 # Configure logger for CI operations

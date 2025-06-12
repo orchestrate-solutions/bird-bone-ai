@@ -6,12 +6,12 @@ Middleware for handling security scanning, enforcement, and compliance checks.
 """
 
 import logging
+import os
 import subprocess
 import sys
-import os
-from pathlib import Path
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 

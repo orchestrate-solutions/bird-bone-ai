@@ -32,9 +32,10 @@ Example Usage:
     are captured as structured data rather than causing chain termination.
 """
 
-import subprocess
 import json
-from modulink import Middleware, Ctx
+import subprocess
+
+from modulink import Ctx, Middleware
 
 
 def error_handler_middleware(ctx: Ctx, next_func) -> Ctx:

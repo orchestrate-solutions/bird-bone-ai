@@ -5,10 +5,10 @@ Setup Environment Validation Link
 Environment validation logic for CI/CD pipeline.
 """
 
-import sys
 import subprocess
+import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
 
 Ctx = Dict[str, Any]
 

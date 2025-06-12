@@ -11,13 +11,13 @@ Usage:
     python scripts/setup_git_lfs.py --test-mode
 """
 
-import subprocess
-import sys
-from pathlib import Path
 import argparse
 import json
-from typing import Dict, List, Any
+import subprocess
+import sys
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List
 
 # Modulink-style context type
 Ctx = Dict[str, Any]

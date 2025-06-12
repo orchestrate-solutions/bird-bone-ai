@@ -6,12 +6,12 @@ Middleware for environment and dependency validation.
 """
 
 import logging
-import sys
-import subprocess
 import os
-from pathlib import Path
-from typing import Dict, Any, List, Optional
+import subprocess
+import sys
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 

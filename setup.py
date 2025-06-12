@@ -3,8 +3,9 @@
 Setup script for Bird Bone AI project.
 """
 
-from setuptools import setup, find_packages
 import pathlib
+
+from setuptools import find_packages, setup
 
 # Get the long description from the README file
 here = pathlib.Path(__file__).parent.resolve()

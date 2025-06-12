@@ -5,7 +5,7 @@ Setup Testing Pipeline Link
 Placeholder for testing pipeline setup.
 """
 
-from typing import Dict, Any
+from typing import Any, Dict
 
 Ctx = Dict[str, Any]
 

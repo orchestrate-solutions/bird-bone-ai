@@ -30,11 +30,12 @@ Example Usage:
     of all operations with detailed context information and persistence.
 """
 
+import json
 import logging
 import time
-import json
 from datetime import datetime
 from pathlib import Path
+
 from modulink import Ctx, Middleware
 
 

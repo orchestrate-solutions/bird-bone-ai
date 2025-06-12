@@ -14,15 +14,16 @@ Test Categories:
 6. Migration Functionality
 """
 
+import json
 import os
+import shutil
 import subprocess
 import tempfile
-import shutil
 import warnings
 from pathlib import Path
+from typing import Any, Dict, List
+
 import pytest
-import json
-from typing import Dict, List, Any
 
 # Test configuration - Aligned with Issue #2 Research Decisions
 # Updated to reflect comprehensive LFS pattern coverage (synchronized with .gitattributes)

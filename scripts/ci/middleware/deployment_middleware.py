@@ -6,12 +6,12 @@ Middleware for deployment automation and validation.
 """
 
 import logging
-import subprocess
 import os
+import subprocess
 import sys
-from pathlib import Path
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 

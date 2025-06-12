@@ -6,16 +6,16 @@ Comprehensive CI/CD Pipeline Integration
 This script provides a unified interface for running the complete CI/CD pipeline
 including security checks, environment validation, testing, and deployment readiness.
 """
-import sys
-import os
-import json
 import argparse
+import json
 import logging
-from pathlib import Path
-from typing import Dict, Any, List, Optional
+import os
+import sys
+import time
 from dataclasses import dataclass, field
 from enum import Enum
-import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 # Add the scripts directory to Python path for imports
 scripts_dir = Path(__file__).parent
@@ -27,12 +27,8 @@ import configure_security_settings
 import setup_environment_validation
 import setup_testing_pipeline
 import validate_ci_cd_operations
-from middleware import (
-    security_middleware,
-    validation_middleware,
-    testing_middleware,
-    deployment_middleware,
-)
+from middleware import (deployment_middleware, security_middleware,
+                        testing_middleware, validation_middleware)
 
 # Configure logging
 logging.basicConfig(

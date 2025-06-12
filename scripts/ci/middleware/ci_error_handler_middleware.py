@@ -31,8 +31,8 @@ Example Usage:
     are captured as structured data rather than causing chain termination.
 """
 
-import subprocess
 import json
+import subprocess
 
 # Assuming modulink types Ctx are available or defined in an __init__.py
 from . import Ctx, Middleware  # Adjusted import for CI context
