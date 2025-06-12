@@ -9,13 +9,12 @@ including security checks, environment validation, testing, and deployment readi
 import argparse
 import json
 import logging
-import os
 import sys
 import time
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 # Add the scripts directory to Python path for imports
 scripts_dir = Path(__file__).parent
@@ -58,7 +57,7 @@ class PipelineResult:
     stage: PipelineStage
     success: bool
     message: str
-    details: Dict[str, Any] = field(default_factory=dict)
+    details: dict[str, Any] = field(default_factory=dict)
     timestamp: float = field(default_factory=time.time)
     duration: float = 0.0
 
@@ -66,11 +65,11 @@ class PipelineResult:
 class CICDPipeline:
     """Comprehensive CI/CD pipeline orchestrator."""
 
-    def __init__(self, project_root: Optional[Path] = None):
+    def __init__(self, project_root: Path | None = None):
         """Initialize the CI/CD pipeline."""
         self.project_root = project_root or Path.cwd()
-        self.results: List[PipelineResult] = []
-        self.context: Dict[str, Any] = {
+        self.results: list[PipelineResult] = []
+        self.context: dict[str, Any] = {
             "project_root": str(self.project_root),
             "timestamp": time.time(),
         }
@@ -88,7 +87,7 @@ class CICDPipeline:
         stage: PipelineStage,
         success: bool,
         message: str,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
         duration: float = 0.0,
     ):
         """Add a pipeline result."""
@@ -357,8 +356,8 @@ class CICDPipeline:
             return False
 
     def run_full_pipeline(
-        self, stages: Optional[List[PipelineStage]] = None
-    ) -> Dict[str, Any]:
+        self, stages: list[PipelineStage] | None = None
+    ) -> dict[str, Any]:
         """Run the complete CI/CD pipeline."""
         if stages is None:
             stages = list(PipelineStage)
@@ -401,7 +400,7 @@ class CICDPipeline:
 
     def generate_pipeline_report(
         self, overall_success: bool, total_duration: float
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Generate comprehensive pipeline report."""
         successful_stages = len([r for r in self.results if r.success])
         failed_stages = len([r for r in self.results if not r.success])

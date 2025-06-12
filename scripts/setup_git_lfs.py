@@ -12,15 +12,14 @@ Usage:
 """
 
 import argparse
-import json
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 # Modulink-style context type
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 
 
 @dataclass
@@ -129,7 +128,7 @@ async def initialize_git_lfs(ctx: Ctx) -> Ctx:
     return ctx
 
 
-def extract_lfs_patterns_from_gitattributes(content: str) -> List[str]:
+def extract_lfs_patterns_from_gitattributes(content: str) -> list[str]:
     """Extract all LFS patterns from .gitattributes content"""
     lfs_patterns = []
 

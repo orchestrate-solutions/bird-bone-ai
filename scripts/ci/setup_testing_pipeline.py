@@ -5,9 +5,9 @@ Setup Testing Pipeline Link
 Placeholder for testing pipeline setup.
 """
 
-from typing import Any, Dict
+from typing import Any
 
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 
 
 def setup_testing_pipeline(ctx: Ctx) -> Ctx:

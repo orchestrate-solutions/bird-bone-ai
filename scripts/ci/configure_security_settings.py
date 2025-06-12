@@ -5,9 +5,9 @@ Configure Security Settings Link
 Placeholder for security settings configuration.
 """
 
-from typing import Any, Dict
+from typing import Any
 
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 
 
 def configure_security_settings(ctx: Ctx) -> Ctx:

@@ -36,7 +36,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-from modulink import Ctx, Middleware
+from modulink import Ctx
 
 
 def setup_file_logger(log_name: str = "dvc_operations") -> logging.Logger:
@@ -158,9 +158,9 @@ def file_logging_before_middleware(ctx: Ctx) -> Ctx:
             )
         elif k == "sample_pipeline" and isinstance(v, dict):
             context_to_log[k] = f"[dict with {len(v)} keys]"
-        elif isinstance(v, (str, int, float, bool)) or v is None:
+        elif isinstance(v, str | int | float | bool) or v is None:
             context_to_log[k] = v
-        elif isinstance(v, (list, dict)):
+        elif isinstance(v, list | dict):
             if len(str(v)) > 200:  # Large objects
                 context_to_log[k] = f"[{type(v).__name__} - {len(v)} items]"
             else:
@@ -192,9 +192,9 @@ def file_logging_after_middleware(ctx: Ctx) -> Ctx:
             )
         elif k == "sample_pipeline" and isinstance(v, dict):
             context_to_log[k] = f"[dict with {len(v)} keys]"
-        elif isinstance(v, (str, int, float, bool)) or v is None:
+        elif isinstance(v, str | int | float | bool) or v is None:
             context_to_log[k] = v
-        elif isinstance(v, (list, dict)):
+        elif isinstance(v, list | dict):
             if len(str(v)) > 200:  # Large objects
                 context_to_log[k] = f"[{type(v).__name__} - {len(v)} items]"
             else:

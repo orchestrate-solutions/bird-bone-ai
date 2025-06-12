@@ -69,7 +69,6 @@ async def initialize_dvc_subdirectory_link(ctx: Ctx) -> Ctx:
         return ctx
 
     models_dir = Path(ctx["models_dir"])
-    project_root = ctx["project_root"]
 
     # Create models directory if it doesn't exist
     if not models_dir.exists():

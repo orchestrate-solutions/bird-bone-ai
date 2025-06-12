@@ -121,7 +121,7 @@ if __name__ == "__main__":
                 total = len(test_results)
                 print(f"🧪 Tests: {passed}/{total} passed")
 
-            print(f"📊 Operations logged to: logs/ directory")
+            print("📊 Operations logged to: logs/ directory")
 
         except Exception as e:
             print(f"💥 Chain execution failed: {str(e)}")

@@ -6,12 +6,11 @@ Middleware for handling security scanning, enforcement, and compliance checks.
 """
 
 import logging
-import os
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +22,7 @@ class SecurityCheck:
     name: str
     passed: bool
     message: str
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
 
 class SecurityMiddleware:
@@ -31,9 +30,9 @@ class SecurityMiddleware:
 
     def __init__(self):
         """Initialize security middleware."""
-        self.checks_performed: List[SecurityCheck] = []
+        self.checks_performed: list[SecurityCheck] = []
 
-    def process(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+    def process(self, ctx: dict[str, Any]) -> dict[str, Any]:
         """Process security checks."""
         logger.info("Running security middleware...")
 
@@ -60,7 +59,7 @@ class SecurityMiddleware:
 
         return ctx
 
-    def check_dependencies_security(self, ctx: Dict[str, Any]) -> None:
+    def check_dependencies_security(self, ctx: dict[str, Any]) -> None:
         """Check for known security vulnerabilities in dependencies."""
         try:
             # Try to run safety check
@@ -100,7 +99,7 @@ class SecurityMiddleware:
                 )
             )
 
-    def check_file_permissions(self, ctx: Dict[str, Any]) -> None:
+    def check_file_permissions(self, ctx: dict[str, Any]) -> None:
         """Check for proper file permissions."""
         try:
             project_root = Path.cwd()
@@ -144,7 +143,7 @@ class SecurityMiddleware:
                 )
             )
 
-    def check_secrets_exposure(self, ctx: Dict[str, Any]) -> None:
+    def check_secrets_exposure(self, ctx: dict[str, Any]) -> None:
         """Check for exposed secrets in code."""
         try:
             # Simple pattern matching for common secrets
@@ -161,7 +160,7 @@ class SecurityMiddleware:
             potential_secrets = []
             for file_path in python_files:
                 try:
-                    with open(file_path, "r", encoding="utf-8") as f:
+                    with open(file_path, encoding="utf-8") as f:
                         content = f.read()
                         for pattern in secret_patterns:
                             import re

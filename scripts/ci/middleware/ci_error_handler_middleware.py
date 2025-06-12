@@ -35,7 +35,7 @@ import json
 import subprocess
 
 # Assuming modulink types Ctx are available or defined in an __init__.py
-from . import Ctx, Middleware  # Adjusted import for CI context
+from . import Ctx  # Adjusted import for CI context
 
 
 def ci_error_handler_middleware(ctx: Ctx, next_func) -> Ctx:

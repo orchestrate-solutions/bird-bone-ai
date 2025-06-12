@@ -35,7 +35,7 @@ Example Usage:
 import json
 import subprocess
 
-from modulink import Ctx, Middleware
+from modulink import Ctx
 
 
 def error_handler_middleware(ctx: Ctx, next_func) -> Ctx:

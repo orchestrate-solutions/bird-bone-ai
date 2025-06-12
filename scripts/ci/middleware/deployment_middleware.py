@@ -6,12 +6,10 @@ Middleware for deployment automation and validation.
 """
 
 import logging
-import os
 import subprocess
-import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +21,7 @@ class DeploymentCheck:
     name: str
     passed: bool
     message: str
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
 
 class DeploymentMiddleware:
@@ -31,9 +29,9 @@ class DeploymentMiddleware:
 
     def __init__(self):
         """Initialize deployment middleware."""
-        self.deployment_checks: List[DeploymentCheck] = []
+        self.deployment_checks: list[DeploymentCheck] = []
 
-    def process(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+    def process(self, ctx: dict[str, Any]) -> dict[str, Any]:
         """Process deployment operations."""
         logger.info("Running deployment middleware...")
 
@@ -61,7 +59,7 @@ class DeploymentMiddleware:
 
         return ctx
 
-    def check_build_readiness(self, ctx: Dict[str, Any]) -> None:
+    def check_build_readiness(self, ctx: dict[str, Any]) -> None:
         """Check if the project is ready for build."""
         try:
             project_root = Path.cwd()
@@ -109,7 +107,7 @@ class DeploymentMiddleware:
                 )
             )
 
-    def check_deployment_config(self, ctx: Dict[str, Any]) -> None:
+    def check_deployment_config(self, ctx: dict[str, Any]) -> None:
         """Check deployment configuration."""
         try:
             project_root = Path.cwd()
@@ -159,7 +157,7 @@ class DeploymentMiddleware:
                 )
             )
 
-    def check_environment_config(self, ctx: Dict[str, Any]) -> None:
+    def check_environment_config(self, ctx: dict[str, Any]) -> None:
         """Check environment configuration."""
         try:
             project_root = Path.cwd()
@@ -178,7 +176,7 @@ class DeploymentMiddleware:
 
             for readme_file in readme_files:
                 try:
-                    with open(readme_file, "r", encoding="utf-8") as f:
+                    with open(readme_file, encoding="utf-8") as f:
                         content = f.read().lower()
                         if any(
                             keyword in content
@@ -221,7 +219,7 @@ class DeploymentMiddleware:
                 )
             )
 
-    def check_docker_config(self, ctx: Dict[str, Any]) -> None:
+    def check_docker_config(self, ctx: dict[str, Any]) -> None:
         """Check Docker configuration."""
         try:
             project_root = Path.cwd()
@@ -246,7 +244,7 @@ class DeploymentMiddleware:
             if dockerfile.exists():
                 # Validate Dockerfile syntax (basic check)
                 try:
-                    with open(dockerfile, "r") as f:
+                    with open(dockerfile) as f:
                         dockerfile_content = f.read()
                         if dockerfile_content.strip().startswith("FROM"):
                             docker_status["dockerfile_valid"] = True

@@ -32,7 +32,7 @@ Example Usage:
 import logging
 import time
 
-from modulink import Ctx, Middleware
+from modulink import Ctx
 
 # Configure logger for DVC operations
 logger = logging.getLogger("dvc_operations")

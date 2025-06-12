@@ -8,9 +8,9 @@ Environment validation logic for CI/CD pipeline.
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 
 
 def setup_environment_validation(ctx: Ctx) -> Ctx:
@@ -61,7 +61,7 @@ def setup_environment_validation(ctx: Ctx) -> Ctx:
         if validation_success:
             print(f"Environment validation passed (Python {python_version})")
         else:
-            print(f"Environment validation failed - check requirements")
+            print("Environment validation failed - check requirements")
 
     except Exception as e:
         print(f"Environment validation error: {e}")

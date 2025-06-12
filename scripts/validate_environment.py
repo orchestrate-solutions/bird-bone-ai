@@ -24,10 +24,8 @@ import os
 import platform
 import subprocess
 import sys
-import traceback
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
 
 # Color codes for terminal output
@@ -102,7 +100,7 @@ class EnvironmentValidator:
             self.errors.append(error_msg)
             return False
 
-    def validate_required_packages(self) -> Dict[str, bool]:
+    def validate_required_packages(self) -> dict[str, bool]:
         """Validate all required packages are installed and importable."""
         print_status("Validating required packages...")
 
@@ -172,7 +170,7 @@ class EnvironmentValidator:
 
         return package_results
 
-    def validate_cuda_and_gpu(self) -> Dict[str, any]:
+    def validate_cuda_and_gpu(self) -> dict[str, any]:
         """Validate CUDA availability and GPU setup."""
         print_status("Validating GPU and CUDA setup...")
 
@@ -223,7 +221,7 @@ class EnvironmentValidator:
                 try:
                     x = torch.randn(1000, 1000, device="cuda:0")
                     y = torch.randn(1000, 1000, device="cuda:0")
-                    z = torch.matmul(x, y)
+                    torch.matmul(x, y)
                     print_success("GPU tensor operations test passed ✓")
                 except Exception as e:
                     error_msg = f"GPU functionality test failed: {str(e)}"
@@ -390,7 +388,7 @@ class EnvironmentValidator:
             self.errors.append(error_msg)
             return False
 
-    def generate_health_report(self) -> Dict[str, any]:
+    def generate_health_report(self) -> dict[str, any]:
         """Generate comprehensive environment health report."""
         print_status("Generating environment health report...")
 
@@ -461,7 +459,7 @@ class EnvironmentValidator:
         self.results["warnings"] = self.warnings
 
         # Print summary
-        print_colored(f"\nEnvironment Health Summary:", Colors.WHITE)
+        print_colored("\nEnvironment Health Summary:", Colors.WHITE)
         print_colored(
             f"Overall Health: {health_status} ({health_score:.1f}%)", health_color
         )
@@ -482,7 +480,7 @@ class EnvironmentValidator:
 
         return self.results
 
-    def run_full_validation(self) -> Dict[str, any]:
+    def run_full_validation(self) -> dict[str, any]:
         """Run complete environment validation."""
         print_colored("Bird-Bone AI Environment Validation", Colors.CYAN)
         print_colored("=" * 50, Colors.CYAN)

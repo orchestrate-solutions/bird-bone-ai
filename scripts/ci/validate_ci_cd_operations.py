@@ -12,8 +12,6 @@ Comprehensive validation of CI/CD pipeline operations including:
 
 import json
 import logging
-import os
-import subprocess
 
 # Import our CI/CD modules
 import sys
@@ -21,7 +19,7 @@ import time
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 # Add the scripts directory to Python path for imports
 scripts_dir = Path(__file__).parent
@@ -38,7 +36,7 @@ from middleware import (
     validation_middleware,
 )
 
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 
 # Configure logging
 logging.basicConfig(
@@ -64,17 +62,17 @@ class ValidationResult:
     check: str
     status: ValidationStatus
     message: str
-    details: Dict[str, Any] = field(default_factory=dict)
+    details: dict[str, Any] = field(default_factory=dict)
     timestamp: float = field(default_factory=time.time)
 
 
 class CICDValidator:
     """Comprehensive CI/CD pipeline validator."""
 
-    def __init__(self, project_root: Optional[Path] = None):
+    def __init__(self, project_root: Path | None = None):
         """Initialize the validator."""
         self.project_root = project_root or Path.cwd()
-        self.results: List[ValidationResult] = []
+        self.results: list[ValidationResult] = []
 
         # Initialize middleware components
         self.security_middleware = security_middleware.SecurityMiddleware()
@@ -88,7 +86,7 @@ class CICDValidator:
         check: str,
         status: ValidationStatus,
         message: str,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ):
         """Add a validation result."""
         result = ValidationResult(
@@ -155,7 +153,7 @@ class CICDValidator:
             if script_path.exists():
                 try:
                     # Test if the script is syntactically valid
-                    with open(script_path, "r") as f:
+                    with open(script_path) as f:
                         compile(f.read(), script_path, "exec")
                     self.add_result(
                         "ci_cd_scripts",
@@ -343,7 +341,7 @@ class CICDValidator:
             try:
                 import yaml
 
-                with open(workflow_file, "r") as f:
+                with open(workflow_file) as f:
                     workflow_data = yaml.safe_load(f)
 
                 # Basic validation
@@ -377,7 +375,7 @@ class CICDValidator:
         req_file = self.project_root / "requirements.txt"
         if req_file.exists():
             try:
-                with open(req_file, "r") as f:
+                with open(req_file) as f:
                     requirements = f.read().strip()
                 if requirements:
                     self.add_result(
@@ -453,7 +451,7 @@ class CICDValidator:
                 "No pyproject.toml found",
             )
 
-    def run_comprehensive_validation(self) -> Dict[str, Any]:
+    def run_comprehensive_validation(self) -> dict[str, Any]:
         """Run all validation checks."""
         logger.info("Starting comprehensive CI/CD validation...")
 
@@ -482,7 +480,7 @@ class CICDValidator:
 
         return self.generate_report()
 
-    def generate_report(self) -> Dict[str, Any]:
+    def generate_report(self) -> dict[str, Any]:
         """Generate a comprehensive validation report."""
         total_checks = len(self.results)
         passed = len([r for r in self.results if r.status == ValidationStatus.PASSED])

@@ -14,14 +14,9 @@ Test Categories:
 6. Migration Functionality
 """
 
-import json
-import os
-import shutil
 import subprocess
-import tempfile
 import warnings
 from pathlib import Path
-from typing import Any, Dict, List
 
 import pytest
 
@@ -55,7 +50,7 @@ TEST_ARCHIVE_EXTENSIONS = CRITICAL_ARCHIVE_EXTENSIONS
 MINIMUM_STORAGE_REQUIREMENT = 1024 * 1024 * 100  # 100MB
 
 
-def extract_all_lfs_patterns_from_gitattributes() -> List[str]:
+def extract_all_lfs_patterns_from_gitattributes() -> list[str]:
     """Extract all LFS patterns from .gitattributes file dynamically"""
     gitattributes_path = Path(".gitattributes")
     if not gitattributes_path.exists():
@@ -77,7 +72,7 @@ def extract_all_lfs_patterns_from_gitattributes() -> List[str]:
     return lfs_patterns
 
 
-def extract_extensions_from_patterns(patterns: List[str]) -> List[str]:
+def extract_extensions_from_patterns(patterns: list[str]) -> list[str]:
     """Extract file extensions from LFS patterns"""
     extensions = []
     for pattern in patterns:
@@ -203,7 +198,7 @@ class TestGitAttributesConfiguration:
         ), f"Found pickle patterns (security risk): {pickle_patterns}"
 
         if hasattr(self, "_verbose_output"):
-            print(f"\n📊 LFS Pattern Analysis:")
+            print("\n📊 LFS Pattern Analysis:")
             print(f"  Total patterns: {len(all_lfs_patterns)}")
             print(f"  Unique extensions: {len(all_extensions)}")
             print(f"  Sample patterns: {all_lfs_patterns[:3]}...")
@@ -413,7 +408,9 @@ class TestLFSIntegration:
                     UserWarning, match="LFS pattern for models directory"
                 ):
                     warnings.warn(
-                        f"LFS pattern for models directory: {line}", UserWarning
+                        f"LFS pattern for models directory: {line}",
+                        UserWarning,
+                        stacklevel=2,
                     )
 
 
@@ -466,7 +463,7 @@ def create_test_model_file(filepath: str, size_kb: int = 1) -> None:
         f.write(b"X" * (size_kb * 1024))
 
 
-def cleanup_test_files(filepaths: List[str]) -> None:
+def cleanup_test_files(filepaths: list[str]) -> None:
     """Clean up test files from filesystem and git"""
     for filepath in filepaths:
         if Path(filepath).exists():

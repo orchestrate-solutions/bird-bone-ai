@@ -1,4 +1,5 @@
-from typing import Any, Callable, Dict
+from collections.abc import Callable
+from typing import Any
 
 # Import all middleware modules
 from . import (
@@ -8,7 +9,7 @@ from . import (
     validation_middleware,
 )
 
-Ctx = Dict[str, Any]
+Ctx = dict[str, Any]
 Middleware = Callable[[Ctx, Callable[[Ctx], Ctx]], Ctx]
 
 # Make modules available at package level

@@ -10,7 +10,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class TestResult:
     name: str
     passed: bool
     message: str
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
 
 class TestingMiddleware:
@@ -30,9 +30,9 @@ class TestingMiddleware:
 
     def __init__(self):
         """Initialize testing middleware."""
-        self.test_results: List[TestResult] = []
+        self.test_results: list[TestResult] = []
 
-    def process(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+    def process(self, ctx: dict[str, Any]) -> dict[str, Any]:
         """Process testing operations."""
         logger.info("Running testing middleware...")
 
@@ -59,7 +59,7 @@ class TestingMiddleware:
 
         return ctx
 
-    def run_unit_tests(self, ctx: Dict[str, Any]) -> None:
+    def run_unit_tests(self, ctx: dict[str, Any]) -> None:
         """Run unit tests."""
         try:
             project_root = Path.cwd()
@@ -135,7 +135,7 @@ class TestingMiddleware:
                 )
             )
 
-    def check_test_coverage(self, ctx: Dict[str, Any]) -> None:
+    def check_test_coverage(self, ctx: dict[str, Any]) -> None:
         """Check test coverage."""
         try:
             project_root = Path.cwd()
@@ -236,7 +236,7 @@ class TestingMiddleware:
                 )
             )
 
-    def run_linting(self, ctx: Dict[str, Any]) -> None:
+    def run_linting(self, ctx: dict[str, Any]) -> None:
         """Run code linting."""
         try:
             project_root = Path.cwd()

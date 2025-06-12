@@ -11,7 +11,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ class ValidationCheck:
     name: str
     passed: bool
     message: str
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
 
 class ValidationMiddleware:
@@ -31,9 +31,9 @@ class ValidationMiddleware:
 
     def __init__(self):
         """Initialize validation middleware."""
-        self.checks_performed: List[ValidationCheck] = []
+        self.checks_performed: list[ValidationCheck] = []
 
-    def process(self, ctx: Dict[str, Any]) -> Dict[str, Any]:
+    def process(self, ctx: dict[str, Any]) -> dict[str, Any]:
         """Process validation checks."""
         logger.info("Running validation middleware...")
 
@@ -61,7 +61,7 @@ class ValidationMiddleware:
 
         return ctx
 
-    def check_python_version(self, ctx: Dict[str, Any]) -> None:
+    def check_python_version(self, ctx: dict[str, Any]) -> None:
         """Check Python version compatibility."""
         try:
             current_version = sys.version_info
@@ -103,7 +103,7 @@ class ValidationMiddleware:
                 )
             )
 
-    def check_dependencies_installed(self, ctx: Dict[str, Any]) -> None:
+    def check_dependencies_installed(self, ctx: dict[str, Any]) -> None:
         """Check if required dependencies are installed."""
         try:
             project_root = Path.cwd()
@@ -168,7 +168,7 @@ class ValidationMiddleware:
                 )
             )
 
-    def check_git_configuration(self, ctx: Dict[str, Any]) -> None:
+    def check_git_configuration(self, ctx: dict[str, Any]) -> None:
         """Check Git configuration."""
         try:
             # Check if we're in a git repository
@@ -238,7 +238,7 @@ class ValidationMiddleware:
                 )
             )
 
-    def check_environment_variables(self, ctx: Dict[str, Any]) -> None:
+    def check_environment_variables(self, ctx: dict[str, Any]) -> None:
         """Check for required environment variables."""
         try:
             # Common environment variables that might be needed
