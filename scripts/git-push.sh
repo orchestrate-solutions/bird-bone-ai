@@ -171,9 +171,9 @@ if [ "$SKIP_CHECKS" = false ]; then
     # 2. Linting and Import Sorting with ruff
     # =============================================================================
     echo -e "\n${BLUE}2/2 Linting Check (ruff)${NC}"
-    if ! ruff check . >/dev/null 2>&1; then
-        echo -e "${RED}❌ Linting errors found. These must be fixed manually:${NC}"
-        echo -e "\n${YELLOW}💡 Run 'ruff check .' to see details${NC}"
+    # Run ruff with --show-files to display errors with source context directly.
+    if ! ruff check --show-files .; then
+        echo -e "\n${RED}❌ Linting errors found (see details above). These must be fixed manually.${NC}"
         echo -e "${RED}🚫 Push aborted due to linting errors${NC}"
         exit 1
     else

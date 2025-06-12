@@ -451,6 +451,69 @@ class CICDValidator:
                 "No pyproject.toml found",
             )
 
+    def validate_project_shell_scripts(self) -> None:
+        """Validate project shell scripts for known problematic commands."""
+        logger.info("Validating project shell scripts for deprecated ruff arguments...")
+        scripts_dir = self.project_root / "scripts"
+
+        if not scripts_dir.is_dir():
+            self.add_result(
+                "shell_scripts",
+                "scripts_directory_check",
+                ValidationStatus.SKIPPED,
+                "Scripts directory not found, skipping shell script validation.",
+                {"path": str(scripts_dir)},
+            )
+            return
+
+        sh_files = list(scripts_dir.rglob("*.sh"))
+
+        if not sh_files:
+            self.add_result(
+                "shell_scripts",
+                "deprecated_ruff_arg_check",
+                ValidationStatus.PASSED,
+                "No .sh files found in scripts directory; deprecated ruff argument check passed.",
+                {"path": str(scripts_dir)},
+            )
+            return
+
+        deprecated_arg_found_in_any_script = False
+        any_read_errors = False
+
+        for sh_file in sh_files:
+            try:
+                with open(sh_file, "r", encoding="utf-8") as f: # Added encoding
+                    for line_num, line in enumerate(f, 1):
+                        if "ruff --show-source" in line:
+                            self.add_result(
+                                "shell_scripts",
+                                f"deprecated_ruff_arg_in_{sh_file.name.replace('.', '_')}",
+                                ValidationStatus.WARNING,
+                                f"Found deprecated 'ruff --show-source' in {sh_file.name} at line {line_num}. Consider using '--show-files'.",
+                                {"file": str(sh_file), "line": line_num},
+                            )
+                            deprecated_arg_found_in_any_script = True
+            except Exception as e:
+                self.add_result(
+                    "shell_scripts",
+                    f"read_error_{sh_file.name.replace('.', '_')}",
+                    ValidationStatus.FAILED,
+                    f"Error reading shell script {sh_file.name}: {e}",
+                    {"file": str(sh_file)},
+                )
+                any_read_errors = True
+
+        if not deprecated_arg_found_in_any_script and not any_read_errors:
+            self.add_result(
+                "shell_scripts",
+                "deprecated_ruff_arg_check",
+                ValidationStatus.PASSED,
+                "All found .sh files checked; no deprecated 'ruff --show-source' arguments found.",
+            )
+        # If deprecated_arg_found_in_any_script is True, specific warnings have already been added.
+        # If any_read_errors is True, specific failures have already been added.
+
     def run_comprehensive_validation(self) -> dict[str, Any]:
         """Run all validation checks."""
         logger.info("Starting comprehensive CI/CD validation...")
@@ -464,6 +527,7 @@ class CICDValidator:
             self.validate_testing_pipeline,
             self.validate_github_workflows,
             self.validate_dependencies,
+            self.validate_project_shell_scripts,  # Added new validation
         ]
 
         for check in validation_checks:
