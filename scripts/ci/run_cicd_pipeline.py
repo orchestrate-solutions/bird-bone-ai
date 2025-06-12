@@ -27,8 +27,12 @@ import configure_security_settings
 import setup_environment_validation
 import setup_testing_pipeline
 import validate_ci_cd_operations
-from middleware import (deployment_middleware, security_middleware,
-                        testing_middleware, validation_middleware)
+from middleware import (
+    deployment_middleware,
+    security_middleware,
+    testing_middleware,
+    validation_middleware,
+)
 
 # Configure logging
 logging.basicConfig(
