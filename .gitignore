@@ -149,10 +149,15 @@ Thumbs.db
 *.pickle
 *.joblib
 *.h5
+!test_*.h5
 *.hdf5
+!test_*.hdf5
 *.pt
+!test_*.pt
 *.pth
+!test_*.pth
 *.onnx
+!test_*.onnx
 models/artifacts/
 data/raw/
 data/processed/

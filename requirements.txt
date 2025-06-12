@@ -6,11 +6,12 @@
 # CORE ML FOUNDATION
 # =============================================================================
 
-# PyTorch ecosystem with CUDA 12.4 support
---index-url https://download.pytorch.org/whl/cu124
-torch>=2.4.0,<2.5.0
-torchaudio>=2.4.0,<2.5.0  
-torchvision>=0.19.0,<0.20.0
+# PyTorch ecosystem with CUDA support (fallback to CPU for compatibility)
+# For CUDA 12.1+ support, uncomment the next line and comment out the standard versions
+# --index-url https://download.pytorch.org/whl/cu121
+torch>=2.0.0,<3.0.0
+torchaudio>=2.0.0,<3.0.0  
+torchvision>=0.15.0,<1.0.0
 
 # Model handling and acceleration
 transformers>=4.44.0,<5.0.0
@@ -27,7 +28,7 @@ scipy>=1.11.0,<2.0.0
 
 # Quantization libraries
 bitsandbytes>=0.41.0,<1.0.0
-auto-gptq>=0.7.0,<1.0.0  # For GPTQ experiments
+# auto-gptq>=0.7.0,<1.0.0  # Commented out due to CUDA build requirements
 
 # Fine-tuning and healing
 peft>=0.12.0,<1.0.0
@@ -74,6 +75,24 @@ black>=24.4.0,<25.0.0
 ruff>=0.5.0,<1.0.0
 mypy>=1.10.0,<2.0.0
 pre-commit>=3.7.0,<4.0.0
+
+# =============================================================================
+# CI/CD DEPENDENCIES
+# =============================================================================
+
+# Security scanning
+safety>=3.2.0,<4.0.0
+bandit>=1.7.0,<2.0.0
+
+# Code analysis and coverage
+flake8>=7.0.0,<8.0.0
+coverage>=7.5.0,<8.0.0
+
+# Infrastructure and utilities
+GitPython>=3.1.0,<4.0.0
+psutil>=5.9.0,<6.0.0
+requests>=2.32.0,<3.0.0
+tomli>=2.0.0,<3.0.0
 
 # =============================================================================
 # JUPYTER & NOTEBOOKS

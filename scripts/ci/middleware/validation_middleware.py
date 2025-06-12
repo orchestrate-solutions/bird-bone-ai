@@ -106,7 +106,7 @@ class ValidationMiddleware:
                 [sys.executable, '-m', 'pip', 'install', '-r', str(requirements_file), '--dry-run'],
                 capture_output=True,
                 text=True,
-                timeout=30
+                timeout=120  # Increased timeout to 2 minutes
             )
             
             if result.returncode == 0:
