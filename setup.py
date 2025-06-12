@@ -14,7 +14,9 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 requirements = []
 try:
     with open("requirements.txt", "r", encoding="utf-8") as f:
-        requirements = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+        requirements = [
+            line.strip() for line in f if line.strip() and not line.startswith("#")
+        ]
 except FileNotFoundError:
     pass
 

@@ -11,10 +11,10 @@ Middleware = Callable[[Ctx, Callable[[Ctx], Ctx]], Ctx]
 
 # Make modules available at package level
 __all__ = [
-    'security_middleware',
-    'validation_middleware', 
-    'testing_middleware',
-    'deployment_middleware',
-    'Ctx',
-    'Middleware'
+    "security_middleware",
+    "validation_middleware",
+    "testing_middleware",
+    "deployment_middleware",
+    "Ctx",
+    "Middleware",
 ]

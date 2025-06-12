@@ -3,7 +3,7 @@ DVC ModuLink Package
 ===================
 
 Purpose:
-    Domain-specific links and middleware for DVC (Data Version Control) 
+    Domain-specific links and middleware for DVC (Data Version Control)
     initialization and management using ModuLink architecture patterns.
 
 Package Structure:
@@ -34,9 +34,9 @@ Usage:
         logging_middleware,
         error_handler_middleware
     )
-    
+
     from modulink import chain
-    
+
     dvc_chain = chain([
         validate_prerequisites_link,
         initialize_dvc_subdirectory_link,
@@ -60,15 +60,15 @@ from .test_dvc_operations import test_dvc_operations_link
 
 __all__ = [
     # Link functions
-    'validate_prerequisites_link',
-    'initialize_dvc_subdirectory_link',
-    'configure_dvc_cache_link',
-    'setup_dvcignore_link',
-    'create_sample_pipeline_link',
-    'test_dvc_operations_link'
+    "validate_prerequisites_link",
+    "initialize_dvc_subdirectory_link",
+    "configure_dvc_cache_link",
+    "setup_dvcignore_link",
+    "create_sample_pipeline_link",
+    "test_dvc_operations_link",
 ]
 
 # Package metadata
-__version__ = '1.0.0'
-__author__ = 'Bird-Bone AI Development Team'
-__description__ = 'ModuLink-based DVC initialization and management'
+__version__ = "1.0.0"
+__author__ = "Bird-Bone AI Development Team"
+__description__ = "ModuLink-based DVC initialization and management"
