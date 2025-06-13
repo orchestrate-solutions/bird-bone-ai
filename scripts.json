@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "lint": "./scripts/run.sh lint",
+    "lint:fix": "./scripts/run.sh lint:fix", 
+    "format": "./scripts/run.sh format",
+    "format:check": "./scripts/run.sh format:check",
+    "imports": "./scripts/run.sh imports",
+    "imports:check": "./scripts/run.sh imports:check",
+    "quality": "./scripts/run.sh quality",
+    "test": "./scripts/run.sh test",
+    "test:coverage": "./scripts/run.sh test:coverage",
+    "push": "./scripts/git-push.sh",
+    "push:force": "./scripts/git-push.sh --force",
+    "push:skip": "./scripts/git-push.sh --skip-checks",
+    "ci": "./scripts/run.sh ci",
+    "build": "./scripts/run.sh build",
+    "clean": "./scripts/run.sh clean"
+  },
+  "description": "NPM-style scripts for Python development workflow"
+}

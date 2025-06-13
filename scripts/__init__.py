@@ -14,6 +14,6 @@ Available Modules:
 """
 
 # Package metadata
-__version__ = '1.0.0'
-__author__ = 'Bird-Bone AI Development Team'
-__description__ = 'ModuLink-based scripts for Bird-Bone AI'
+__version__ = "1.0.0"
+__author__ = "Bird-Bone AI Development Team"
+__description__ = "ModuLink-based scripts for Bird-Bone AI"

@@ -8,24 +8,24 @@ Purpose:
 
 Input Context Requirements:
     - models_dir: str - Path to models directory
-    
+
 Output Context Additions:
     - dvcignore_path: str - Path to created .dvcignore file
     - dvcignore_created: bool - Whether .dvcignore was successfully created
     - operation: str - Set to 'setup_dvcignore'
-    
+
 Error Conditions:
     - Previous errors exist -> skips processing and returns context unchanged
     - File write permission errors -> raises PermissionError (handled by middleware)
     - Path/directory errors -> raises OSError (handled by middleware)
-    
+
 Dependencies:
     - pathlib.Path: For file path handling
-    
+
 Side Effects:
     - Creates .dvcignore file in models directory
     - Overwrites existing .dvcignore if it exists
-    
+
 Example Context Flow:
     Input:  {
         'models_dir': '/project/models'
@@ -39,17 +39,19 @@ Example Context Flow:
 """
 
 from pathlib import Path
+
 from modulink import Ctx
+
 
 async def setup_dvcignore_link(ctx: Ctx) -> Ctx:
     """Create .dvcignore file with appropriate exclusions"""
     # Skip if there are previous errors
-    if ctx.get('errors'):
+    if ctx.get("errors"):
         return ctx
-        
-    models_dir = Path(ctx['models_dir'])
-    dvcignore_path = models_dir / '.dvcignore'
-    
+
+    models_dir = Path(ctx["models_dir"])
+    dvcignore_path = models_dir / ".dvcignore"
+
     # Default .dvcignore patterns for models directory
     dvcignore_content = """# DVC ignore file for models directory
 # Ignore temporary files and directories
@@ -89,14 +91,14 @@ logs/
 .directory
 desktop.ini
 """
-    
+
     # Write the .dvcignore file
-    with open(dvcignore_path, 'w') as f:
+    with open(dvcignore_path, "w") as f:
         f.write(dvcignore_content)
-    
+
     return {
         **ctx,
-        'operation': 'setup_dvcignore',
-        'dvcignore_path': str(dvcignore_path),
-        'dvcignore_created': True
+        "operation": "setup_dvcignore",
+        "dvcignore_path": str(dvcignore_path),
+        "dvcignore_created": True,
     }

@@ -1,0 +1,272 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  PYTHON_VERSION: '3.9'
+
+jobs:
+  # ============================================================================
+  # Code Quality Enforcement Job - Runs First and Auto-fixes Issues
+  # ============================================================================
+  code-quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: .
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install code quality tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install black ruff
+
+    - name: Check for code quality issues
+      id: quality-check
+      run: |
+        echo "Checking code quality..."
+
+        # Check if code needs formatting
+        if ! black --check --diff . >/dev/null 2>&1; then
+          echo "format_need_fix=true" >> $GITHUB_OUTPUT
+        else
+          echo "format_need_fix=false" >> $GITHUB_OUTPUT
+        fi
+
+        # Check for linting errors (blocking)
+        if ! ruff check . >/dev/null 2>&1; then
+          echo "lint_errors=true" >> $GITHUB_OUTPUT
+        else
+          echo "lint_errors=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Auto-fix code formatting
+      if: steps.quality-check.outputs.format_need_fix == 'true'
+      run: |
+        echo "🔧 Auto-fixing code formatting..."
+        black .
+        echo "✅ Code formatting fixed"
+
+    - name: Fail on linting errors
+      if: steps.quality-check.outputs.lint_errors == 'true'
+      run: |
+        echo "❌ Linting errors found:"
+        ruff check . --show-files
+        echo ""
+        echo "🚫 These errors must be fixed manually"
+        echo "💡 Run 'ruff check .' locally to see all issues"
+        exit 1
+
+    - name: Check if changes were made
+      id: changes
+      run: |
+        if ! git diff --quiet; then
+          echo "changes_made=true" >> $GITHUB_OUTPUT
+          echo "📝 Auto-fixes were applied:"
+          git diff --name-only | sed 's/^/  - /'
+        else
+          echo "changes_made=false" >> $GITHUB_OUTPUT
+          echo "✅ No auto-fixes needed"
+        fi
+
+    - name: Create Pull Request with fixes
+      if: steps.changes.outputs.changes_made == 'true' && github.event_name == 'push'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "style: auto-fix code quality issues"
+        title: "🤖 Auto-fix: Code quality improvements"
+        body: |
+          ## 🤖 Automated Code Quality Fixes
+
+          This PR contains automatic fixes for code quality issues:
+
+          ### Changes Applied:
+          - ✅ **Code Formatting** - Applied `black` to format code consistently
+
+          ### Quality Checks:
+          - 🔍 All linting errors have been verified as passing
+          - 📊 Style warnings may still exist (non-blocking)
+
+          This PR was automatically created by the CI/CD pipeline to ensure code quality standards.
+
+          **Review and merge when ready!** 🚀
+        branch: auto-fix/code-quality-${{ github.run_number }}
+        base: ${{ github.ref_name }}
+        labels: |
+          automated
+          code-quality
+          style
+
+  # ============================================================================
+  # Original Jobs - Updated to depend on code-quality
+  # ============================================================================
+  test:
+    runs-on: ubuntu-latest
+    needs: [code-quality]
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov black ruff
+
+    - name: Lint with ruff
+      run: ruff check .
+
+    - name: Format check with black
+      run: black --check --diff .
+
+    - name: Run tests with pytest
+      run: |
+        pytest tests/ --cov=./ --cov-report=xml --cov-report=html
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+  security:
+    runs-on: ubuntu-latest
+    needs: code-quality
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install safety bandit
+
+    - name: Check for security vulnerabilities with safety
+      run: safety check
+
+    - name: Run bandit security linter
+      run: bandit -r . -f json -o bandit-report.json || true
+
+    - name: Upload bandit report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: bandit-report
+        path: bandit-report.json
+
+  validation:
+    runs-on: ubuntu-latest
+    needs: code-quality
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run environment validation
+      run: python scripts/ci/setup_environment_validation.py
+
+    - name: Run CI/CD validation
+      run: python scripts/ci/validate_ci_cd_operations.py
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test, security, validation, code-quality]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build wheel
+
+    - name: Build package
+      run: python -m build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Add your deployment commands here
+        # For example: scp, rsync, docker push, etc.
+
+    - name: Run deployment validation
+      run: |
+        echo "Validating deployment..."
+        # Add deployment validation commands here

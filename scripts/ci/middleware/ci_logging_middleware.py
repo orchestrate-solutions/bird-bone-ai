@@ -1,9 +1,9 @@
 """
-DVC Logging Middleware
+CI Logging Middleware
 =====================
 
 Purpose:
-    Provides comprehensive logging functionality for DVC operations, tracking
+    Provides comprehensive logging functionality for CI operations, tracking
     operation progress, timing, and context flow through the chain.
 
 Input Context Requirements:
@@ -32,19 +32,19 @@ Example Usage:
 import logging
 import time
 
-from modulink import Ctx
+from . import Ctx  # Adjusted import for CI context
 
-# Configure logger for DVC operations
-logger = logging.getLogger("dvc_operations")
+# Configure logger for CI operations
+logger = logging.getLogger("ci_operations")
 
 
-def logging_middleware(ctx: Ctx, next_func) -> Ctx:
-    """Log all DVC operations with detailed context and timing"""
+def ci_logging_middleware(ctx: Ctx, next_func) -> Ctx:
+    """Log all CI operations with detailed context and timing"""
     operation = ctx.get("operation", "unknown_operation")
     start_time = time.time()
 
     # Log operation start
-    logger.info(f"🚀 Starting DVC operation: {operation}")
+    logger.info(f"🚀 Starting CI operation: {operation}")
 
     # Log relevant context information (excluding sensitive data)
     context_info = {
@@ -89,3 +89,6 @@ def logging_middleware(ctx: Ctx, next_func) -> Ctx:
 
         # Re-raise the exception to let error middleware handle it
         raise
+
+
+__all__ = ["ci_logging_middleware"]
