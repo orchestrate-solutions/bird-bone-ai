@@ -17,6 +17,7 @@ ignore = [
     "E402",  # module level import not at top of file (needed for sys.path modifications)
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
+    "UP007", # Use `X | Y` for type annotations
 ]
 
 [lint.per-file-ignores]
