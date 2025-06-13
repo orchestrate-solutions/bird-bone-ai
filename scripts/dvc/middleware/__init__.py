@@ -22,10 +22,12 @@ Usage:
 """
 
 from .error_handler_middleware import error_handler_middleware
-from .file_logging_middleware import (file_logging_after_middleware,
-                                      file_logging_before_middleware,
-                                      file_logging_middleware,
-                                      setup_file_logger)
+from .file_logging_middleware import (
+    file_logging_after_middleware,
+    file_logging_before_middleware,
+    file_logging_middleware,
+    setup_file_logger,
+)
 from .logging_middleware import logging_middleware
 
 __all__ = [

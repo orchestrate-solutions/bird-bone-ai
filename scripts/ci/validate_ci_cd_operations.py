@@ -12,6 +12,7 @@ Comprehensive validation of CI/CD pipeline operations including:
 
 import json
 import logging
+
 # Import our CI/CD modules
 import sys
 import time
@@ -28,8 +29,12 @@ if str(scripts_dir) not in sys.path:
 import configure_security_settings
 import setup_environment_validation
 import setup_testing_pipeline
-from middleware import (deployment_middleware, security_middleware,
-                        testing_middleware, validation_middleware)
+from middleware import (
+    deployment_middleware,
+    security_middleware,
+    testing_middleware,
+    validation_middleware,
+)
 
 Ctx = dict[str, Any]
 

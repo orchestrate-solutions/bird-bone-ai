@@ -45,13 +45,20 @@ if project_root not in sys.path:
 from modulink import catch_errors, error_handlers
 
 # Import ModuLink components
-from scripts.dvc import (configure_dvc_cache_link, create_sample_pipeline_link,
-                         initialize_dvc_subdirectory_link,
-                         setup_dvcignore_link, test_dvc_operations_link,
-                         validate_prerequisites_link)
+from scripts.dvc import (
+    configure_dvc_cache_link,
+    create_sample_pipeline_link,
+    initialize_dvc_subdirectory_link,
+    setup_dvcignore_link,
+    test_dvc_operations_link,
+    validate_prerequisites_link,
+)
+
 # Import custom file-based logging middleware and ModuLink error handlers
-from scripts.dvc.middleware import (file_logging_after_middleware,
-                                    file_logging_before_middleware)
+from scripts.dvc.middleware import (
+    file_logging_after_middleware,
+    file_logging_before_middleware,
+)
 
 # Create the main DVC initialization chain with custom file-based logging
 dvc_init_chain = chain(
