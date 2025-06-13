@@ -86,7 +86,7 @@ class CICDValidator:
         check: str,
         status: ValidationStatus,
         message: str,
-        details: dict[str, Any] | None = None,
+        details: Union[dict[str, Any], None] = None
     ):
         """Add a validation result."""
         result = ValidationResult(
