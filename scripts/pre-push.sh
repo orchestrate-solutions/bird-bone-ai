@@ -16,8 +16,13 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Project root directory
-PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Project root directory - ensure we're in the work tree, not .git directory
+if ! REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null); then
+    echo -e "${RED}❌ Not in a git repository${NC}"
+    exit 1
+fi
+
+PROJECT_ROOT="$REPO_ROOT"
 cd "$PROJECT_ROOT"
 
 echo -e "${BLUE}🔍 Running pre-push code quality checks...${NC}"
@@ -55,11 +60,6 @@ run_check() {
     fi
 }
 
-# Check if we're in a git repository
-if ! git rev-parse --git-dir > /dev/null 2>&1; then
-    echo -e "${RED}❌ Not in a git repository${NC}"
-    exit 1
-fi
 
 # Check if there are staged changes
 if git diff --cached --quiet; then
