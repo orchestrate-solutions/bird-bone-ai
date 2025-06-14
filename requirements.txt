@@ -10,7 +10,7 @@
 # For CUDA 12.1+ support, uncomment the next line and comment out the standard versions
 # --index-url https://download.pytorch.org/whl/cu121
 torch>=2.0.0,<3.0.0
-torchaudio>=2.0.0,<3.0.0  
+torchaudio>=2.0.0,<3.0.0
 torchvision>=0.15.0,<1.0.0
 
 # Model handling and acceleration
