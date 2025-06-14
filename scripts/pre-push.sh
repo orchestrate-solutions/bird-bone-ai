@@ -60,7 +60,6 @@ run_check() {
     fi
 }
 
-
 # Check if there are staged changes
 if git diff --cached --quiet; then
     echo -e "${YELLOW}⚠️  No staged changes found. Checking working directory...${NC}"
